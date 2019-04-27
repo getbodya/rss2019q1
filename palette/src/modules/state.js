@@ -1,5 +1,5 @@
 let state = {
-  currentColor: '#ccc',
+  currentColor: 'red',
   prevColor: 'green',
   firstColor: 'red',
   secondColor: 'blue',
