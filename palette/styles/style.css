@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* /////// */
+/* HEADER */
+/* ///// */
+.header__panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 0 0 20px 20px;
+}
+.header__menu{
+  margin: 0 3% 0 2%;
+  font-size: 30px;
+  cursor: pointer;
+}
+.header__title {
+  font-size: 20px;
+}
+/* ///// */
+/* main */
+/* /// */
+.main {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  grid-template-rows: 584px;
+}
+.main__toolbar{
+  grid-column: 1 / 2;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.toolbar__tools {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 70%;
+  height: 30%;
+  border: 1px black solid;
+  border-radius: 10px;
+}
+.toolbar__paint-bucket,
+.toolbar__choose-color,
+.toolbar__move,
+.toolbar__transform {
+  margin-left: 17%;
+  cursor: pointer;
+}
+.toolbar__paint-bucket:hover,
+.toolbar__choose-color:hover,
+.toolbar__move:hover,
+.toolbar__transform:hover {
+  background: black;
+  color: white;
+}
+.selected-tool {
+  background: black;
+  color: white;
+}
+.toolbar__colors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 70%;
+  height: 30%;
+  border: 1px black solid;
+
+  border-radius: 10px;
+}
+.colors__current-color,
+.colors__prev-color,
+.colors__red-color,
+.colors__blue-color {
+  margin-left: 17%;
+}
+.colors__demo-current-color,
+.colors__demo-prev-color,
+.colors__demo-red-color,
+.colors__demo-blue-color {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  cursor: pointer;
+}
+.colors__demo-current-color {
+  background: #ccc;
+}
+.colors__demo-prev-color{
+  background: green;
+}
+.colors__demo-red-color {
+  background: red;
+}
+.colors__demo-blue-color {
+  background: blue;
+}
+
+
+.main__canvas-container{
+
+}
+.canvas-container__canvas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 2%;
+  width: 450px;
+  height: 450px;
+  margin: 0 auto;
+  position: relative;
+  top: calc(50% - 225px);
+  border: 1px black solid;
+}
+#figure1{
+  background: #ccc;
+}
+#figure2{
+  background: #ccc;
+}
+#figure3{
+  background: #ccc;
+}
+#figure4{
+  background: #ccc;
+}
+#figure5{
+  background: #ccc;
+}
+#figure6{
+  background: #ccc
+}
+#figure7{
+  background: #ccc;
+}
+#figure8{
+  background: #ccc;
+}
+#figure9{
+  background: #ccc;
+}
+.circle {
+  border-radius: 50%;
+}
