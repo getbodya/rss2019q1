@@ -97,10 +97,10 @@ body {
 .main__canvas-container{
 }
 .canvas-container__canvas {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 2%;
+  grid-template-rows: repeat(3, 1fr); */
+  /* grid-gap: 2%; */
   width: 450px;
   height: 450px;
   margin: 0 auto;
@@ -108,6 +108,11 @@ body {
   top: calc(50% - 225px);
   border: 1px black solid;
 }
+.canvas__figure{
+  position: absolute;
+  width: 144px;
+  height: 144px;
+} 
 /* #figure1{
   background: #ccc;
 }

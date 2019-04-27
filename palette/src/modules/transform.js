@@ -1,9 +1,11 @@
-import state from './state'
+import {setState, getState} from './state'
 import {unselectTools} from './tools'
 
 
 const transform = document.getElementById('transform');
 transform.addEventListener('click', ()=>{
+  let state = getState();
+  
   if(transform.classList.contains('selected-tool')){
     transform.classList.remove('selected-tool');
     state['selectTool'] = '';
@@ -14,5 +16,7 @@ transform.addEventListener('click', ()=>{
     state['selectTool'] = 'transform';
     console.log(state);
   }
+  setState(state);
+
 })
 export default transform;
