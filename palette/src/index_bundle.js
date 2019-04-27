@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/state */ \"./src/modules/state.js\");\n/* harmony import */ var _modules_paint_bucket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/paint-bucket */ \"./src/modules/paint-bucket.js\");\n/* harmony import */ var _modules_figure__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/figure */ \"./src/modules/figure.js\");\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/state */ \"./src/modules/state.js\");\n/* harmony import */ var _modules_paint_bucket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/paint-bucket */ \"./src/modules/paint-bucket.js\");\n/* harmony import */ var _modules_figure__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/figure */ \"./src/modules/figure.js\");\n/* harmony import */ var _modules_transform__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/transform */ \"./src/modules/transform.js\");\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n\nvar figures = document.getElementsByClassName('canvas__figure');\nconsole.log(figures.length);\n\nvar _loop = function _loop(i) {\n  figures[i].addEventListener('click', function () {\n    console.log(figures[i]);\n\n    switch (_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool']) {\n      case 'bucket':\n        figures[i].style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'];\n        break;\n\n      default:\n        break;\n    }\n  });\n};\n\nfor (var i = 0; i < figures.length; i++) {\n  _loop(i);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (figures);\n\n//# sourceURL=webpack:///./src/modules/figure.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n\nvar figures = document.getElementsByClassName('canvas__figure');\nconsole.log(figures.length);\n\nvar _loop = function _loop(i) {\n  figures[i].addEventListener('click', function () {\n    switch (_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool']) {\n      case 'bucket':\n        figures[i].style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'];\n        break;\n\n      case 'transform':\n        if (figures[i].classList.contains('circle')) {\n          figures[i].classList.remove('circle');\n        } else {\n          figures[i].classList.add('circle');\n        }\n\n      default:\n        break;\n    }\n  });\n};\n\nfor (var i = 0; i < figures.length; i++) {\n  _loop(i);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (figures);\n\n//# sourceURL=webpack:///./src/modules/figure.js?");
 
 /***/ }),
 
@@ -118,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sta
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n\nvar paintBucket = document.getElementById('bucket');\npaintBucket.addEventListener('click', function (e) {\n  if (paintBucket.classList.contains('selected-tool')) {\n    paintBucket.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n  } else {\n    paintBucket.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'bucket';\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (paintBucket);\n\n//# sourceURL=webpack:///./src/modules/paint-bucket.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar paintBucket = document.getElementById('bucket');\npaintBucket.addEventListener('click', function (e) {\n  if (paintBucket.classList.contains('selected-tool')) {\n    paintBucket.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  } else {\n    Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n    paintBucket.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'bucket';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (paintBucket);\n\n//# sourceURL=webpack:///./src/modules/paint-bucket.js?");
 
 /***/ }),
 
@@ -131,6 +131,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sta
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\nvar state = {\n  currentColor: 'red',\n  prevColor: 'green',\n  firstColor: 'red',\n  secondColor: 'blue',\n  selectTool: ''\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (state);\n\n//# sourceURL=webpack:///./src/modules/state.js?");
+
+/***/ }),
+
+/***/ "./src/modules/tools.js":
+/*!******************************!*\
+  !*** ./src/modules/tools.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nfunction unselectTools() {\n  var tools = document.querySelector('.toolbar__tools');\n\n  for (var i = 0; i < tools.children.length; i++) {\n    if (tools.children[i].classList.contains('selected-tool')) {\n      tools.children[i].classList.remove('selected-tool');\n    }\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (unselectTools);\n\n//# sourceURL=webpack:///./src/modules/tools.js?");
+
+/***/ }),
+
+/***/ "./src/modules/transform.js":
+/*!**********************************!*\
+  !*** ./src/modules/transform.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar transform = document.getElementById('transform');\ntransform.addEventListener('click', function () {\n  if (transform.classList.contains('selected-tool')) {\n    transform.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  } else {\n    Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n    transform.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'transform';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (transform);\n\n//# sourceURL=webpack:///./src/modules/transform.js?");
 
 /***/ })
 
