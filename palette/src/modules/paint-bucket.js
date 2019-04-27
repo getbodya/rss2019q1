@@ -1,5 +1,5 @@
 import state from './state';
-import unselectTools from './tools'
+import {unselectTools} from './tools'
 
 const paintBucket = document.getElementById('bucket');
 paintBucket.addEventListener('click', (e)=>{

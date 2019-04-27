@@ -94,7 +94,31 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/state */ \"./src/modules/state.js\");\n/* harmony import */ var _modules_paint_bucket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/paint-bucket */ \"./src/modules/paint-bucket.js\");\n/* harmony import */ var _modules_figure__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/figure */ \"./src/modules/figure.js\");\n/* harmony import */ var _modules_transform__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/transform */ \"./src/modules/transform.js\");\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/state */ \"./src/modules/state.js\");\n/* harmony import */ var _modules_paint_bucket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/paint-bucket */ \"./src/modules/paint-bucket.js\");\n/* harmony import */ var _modules_figure__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/figure */ \"./src/modules/figure.js\");\n/* harmony import */ var _modules_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/colors */ \"./src/modules/colors.js\");\n/* harmony import */ var _modules_transform__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/transform */ \"./src/modules/transform.js\");\n/* harmony import */ var _modules_choose_color__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/choose-color */ \"./src/modules/choose-color.js\");\n/* harmony import */ var _modules_tools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/tools */ \"./src/modules/tools.js\");\n\n\n\n\n\n\n\n\n\nvar loadAll = function loadAll() {\n  Object(_modules_tools__WEBPACK_IMPORTED_MODULE_6__[\"loadCanvas\"])();\n  Object(_modules_tools__WEBPACK_IMPORTED_MODULE_6__[\"loadColors\"])();\n};\n\nwindow.onload = loadAll;\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/choose-color.js":
+/*!*************************************!*\
+  !*** ./src/modules/choose-color.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar chooseColor = document.getElementById('choose-color');\nchooseColor.addEventListener('click', function () {\n  if (chooseColor.classList.contains('selected-tool')) {\n    chooseColor.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  } else {\n    Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"unselectTools\"])();\n    chooseColor.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'choose-color';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (transform);\n\n//# sourceURL=webpack:///./src/modules/choose-color.js?");
+
+/***/ }),
+
+/***/ "./src/modules/colors.js":
+/*!*******************************!*\
+  !*** ./src/modules/colors.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar colors = document.querySelectorAll('.colors__demo');\nconsole.log(colors);\n\nvar _loop = function _loop(i) {\n  colors[i].addEventListener('click', function () {\n    if (_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] == 'choose-color') {\n      _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'] = colors[i].style.backgroundColor;\n      Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"loadColors\"])();\n    }\n  });\n};\n\nfor (var i = 0; i < colors.length; i++) {\n  _loop(i);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (colors);\n\n//# sourceURL=webpack:///./src/modules/colors.js?");
 
 /***/ }),
 
@@ -106,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n\nvar figures = document.getElementsByClassName('canvas__figure');\nconsole.log(figures.length);\n\nvar _loop = function _loop(i) {\n  figures[i].addEventListener('click', function () {\n    switch (_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool']) {\n      case 'bucket':\n        figures[i].style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'];\n        break;\n\n      case 'transform':\n        if (figures[i].classList.contains('circle')) {\n          figures[i].classList.remove('circle');\n        } else {\n          figures[i].classList.add('circle');\n        }\n\n      default:\n        break;\n    }\n  });\n};\n\nfor (var i = 0; i < figures.length; i++) {\n  _loop(i);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (figures);\n\n//# sourceURL=webpack:///./src/modules/figure.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\n\nvar figures = document.getElementsByClassName('canvas__figure');\n\nvar _loop = function _loop(i) {\n  figures[i].addEventListener('click', function () {\n    switch (_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool']) {\n      case 'bucket':\n        _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['figures'][i]['color'] = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'];\n        figures[i].style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'];\n        Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"loadCanvas\"])();\n        break;\n\n      case 'transform':\n        if (figures[i].classList.contains('circle')) {\n          figures[i].classList.remove('circle');\n        } else {\n          figures[i].classList.add('circle');\n        }\n\n        break;\n\n      case 'choose-color':\n        _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'] = figures[i].style.backgroundColor;\n        Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"loadColors\"])();\n        break;\n\n      default:\n        break;\n    }\n  });\n};\n\nfor (var i = 0; i < figures.length; i++) {\n  _loop(i);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (figures);\n\n//# sourceURL=webpack:///./src/modules/figure.js?");
 
 /***/ }),
 
@@ -118,7 +142,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sta
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar paintBucket = document.getElementById('bucket');\npaintBucket.addEventListener('click', function (e) {\n  if (paintBucket.classList.contains('selected-tool')) {\n    paintBucket.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  } else {\n    Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n    paintBucket.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'bucket';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (paintBucket);\n\n//# sourceURL=webpack:///./src/modules/paint-bucket.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar paintBucket = document.getElementById('bucket');\npaintBucket.addEventListener('click', function (e) {\n  if (paintBucket.classList.contains('selected-tool')) {\n    paintBucket.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  } else {\n    Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"unselectTools\"])();\n    paintBucket.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'bucket';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (paintBucket);\n\n//# sourceURL=webpack:///./src/modules/paint-bucket.js?");
 
 /***/ }),
 
@@ -130,7 +154,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sta
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar state = {\n  currentColor: 'red',\n  prevColor: 'green',\n  firstColor: 'red',\n  secondColor: 'blue',\n  selectTool: ''\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (state);\n\n//# sourceURL=webpack:///./src/modules/state.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nvar state = {\n  currentColor: 'red',\n  prevColor: 'green',\n  firstColor: 'red',\n  secondColor: 'blue',\n  selectTool: '',\n  figures: [{\n    id: 0,\n    color: '#ccc'\n  }, {\n    id: 1,\n    color: '#ccc'\n  }, {\n    id: 2,\n    color: '#ccc'\n  }, {\n    id: 3,\n    color: '#ccc'\n  }, {\n    id: 4,\n    color: '#ccc'\n  }, {\n    id: 5,\n    color: '#ccc'\n  }, {\n    id: 6,\n    color: '#ccc'\n  }, {\n    id: 7,\n    color: '#ccc'\n  }, {\n    id: 8,\n    color: '#ccc'\n  }]\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (state);\n\n//# sourceURL=webpack:///./src/modules/state.js?");
 
 /***/ }),
 
@@ -138,11 +162,11 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar state = {\n  currentColor
 /*!******************************!*\
   !*** ./src/modules/tools.js ***!
   \******************************/
-/*! exports provided: default */
+/*! exports provided: unselectTools, loadCanvas, loadColors */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nfunction unselectTools() {\n  var tools = document.querySelector('.toolbar__tools');\n\n  for (var i = 0; i < tools.children.length; i++) {\n    if (tools.children[i].classList.contains('selected-tool')) {\n      tools.children[i].classList.remove('selected-tool');\n    }\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (unselectTools);\n\n//# sourceURL=webpack:///./src/modules/tools.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"unselectTools\", function() { return unselectTools; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"loadCanvas\", function() { return loadCanvas; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"loadColors\", function() { return loadColors; });\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n\n\nfunction unselectTools() {\n  var tools = document.querySelector('.toolbar__tools');\n\n  for (var i = 0; i < tools.children.length; i++) {\n    if (tools.children[i].classList.contains('selected-tool')) {\n      tools.children[i].classList.remove('selected-tool');\n    }\n  }\n}\n\nfunction loadCanvas() {\n  var figures = document.querySelectorAll('.canvas__figure');\n\n  for (var i = 0; i < figures.length; i++) {\n    figures[i].style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['figures'][i]['color'];\n  }\n}\n\nfunction loadColors() {\n  document.querySelector('.colors__demo-current-color').style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['currentColor'];\n  document.querySelector('.colors__demo-prev-color').style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['prevColor'];\n  document.querySelector('.colors__demo-red-color').style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['firstColor'];\n  document.querySelector('.colors__demo-blue-color').style.backgroundColor = _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['secondColor'];\n}\n\n\n\n//# sourceURL=webpack:///./src/modules/tools.js?");
 
 /***/ }),
 
@@ -154,7 +178,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nfunction unselectTools() {\n 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar transform = document.getElementById('transform');\ntransform.addEventListener('click', function () {\n  if (transform.classList.contains('selected-tool')) {\n    transform.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  } else {\n    Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n    transform.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'transform';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (transform);\n\n//# sourceURL=webpack:///./src/modules/transform.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ \"./src/modules/state.js\");\n/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ \"./src/modules/tools.js\");\n\n\nvar transform = document.getElementById('transform');\ntransform.addEventListener('click', function () {\n  if (transform.classList.contains('selected-tool')) {\n    transform.classList.remove('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = '';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  } else {\n    Object(_tools__WEBPACK_IMPORTED_MODULE_1__[\"unselectTools\"])();\n    transform.classList.add('selected-tool');\n    _state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]['selectTool'] = 'transform';\n    console.log(_state__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n  }\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (transform);\n\n//# sourceURL=webpack:///./src/modules/transform.js?");
 
 /***/ })
 
