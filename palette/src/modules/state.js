@@ -6,16 +6,16 @@ let defaultState = {
   selectTool: '',
   figures: [
     {
-      id:0,
+      id: 0,
       color: '#ccc',
-      circle: true,
+      circle: false,
       top: '0',
       left: '0'
     },
     {
-      id:1,
+      id: 1,
       color: '#ccc',
-      circle: true,
+      circle: false,
       top: '0',
       left: '153'
     },
@@ -29,21 +29,21 @@ let defaultState = {
     {
       id: 3,
       color: '#ccc',
-      circle: true,
+      circle: false,
       top: '153',
       left: '0'
     },
     {
-      id:4,
+      id: 4,
       color: '#ccc',
-      circle: true,
+      circle: false,
       top: '153',
       left: '153'
     },
     {
       id: 5,
       color: '#ccc',
-      circle: true,
+      circle: false,
       top: '153',
       left: '306'
     },
@@ -57,7 +57,7 @@ let defaultState = {
     {
       id: 7,
       color: '#ccc',
-      circle: true,
+      circle: false,
       top: '306',
       left: '153'
     },
@@ -72,31 +72,22 @@ let defaultState = {
 }
 let tempState = {}
 
-function setState(state){
-  if (localStorage.getItem('state')!=null){
-    console.log('set--',state)
-    localStorage.setItem('state', JSON.stringify(state))
-  }else{
-    localStorage.setItem('state', JSON.stringify(defaultState))
-  }
+function setState(state) {
+  localStorage.setItem('state', JSON.stringify(state))
 }
 
-function getState(){
-  console.log('get--',JSON.parse(localStorage.getItem('state')))
+function getState() {
   return JSON.parse(localStorage.getItem('state'))
 }
 
-// if (!!localStorage.getItem('state')){
-  
-//   setState(defaultState);
-//   tempState = defaultState;
-// }else{
-//   console.log('12')
-//   tempState = getState()
-// }
+if (localStorage.getItem('state')==null){
 
-export  { 
+  setState(defaultState);
+  tempState = defaultState;
+}
+
+export {
   tempState as state,
   setState,
-  getState 
+  getState
 };

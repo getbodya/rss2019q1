@@ -43,47 +43,54 @@ body {
 .toolbar__tools {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
   margin: 0 auto;
-  width: 70%;
+  width: 90%;
   height: 30%;
-  border: 1px black solid;
-  border-radius: 10px;
+  border: 1px #ccc solid;
+  font-weight: bold;
+  border-radius: 2px;
+  box-shadow: 0 16px 10px -8px #ccc;
 }
 .toolbar__paint-bucket,
 .toolbar__choose-color,
 .toolbar__move,
 .toolbar__transform {
-  margin-left: 17%;
+  padding: 5px 16px;
+  width: 74%;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  transition: .15s ease-in-out;
   cursor: pointer;
 }
 .toolbar__paint-bucket:hover,
 .toolbar__choose-color:hover,
 .toolbar__move:hover,
 .toolbar__transform:hover {
-  background: black;
-  color: white;
+  box-shadow: 0 0 10px 0 #000 inset, 0 0 10px 4px #000;
 }
 .selected-tool {
-  background: black;
-  color: white;
+  box-shadow: 0 0 10px 0 #000 inset, 0 0 10px 4px #000;
 }
 .toolbar__colors {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   margin: 0 auto;
-  width: 70%;
+  width: 90%;
   height: 30%;
-  border: 1px black solid;
-
-  border-radius: 10px;
+  border: 1px #ccc solid;
+  font-weight: bold;
+  border-radius: 2px;
+  box-shadow: 0 16px 10px -8px #ccc;
 }
 .colors__current-color,
 .colors__prev-color,
 .colors__red-color,
 .colors__blue-color {
-  margin-left: 17%;
+  margin: 0 0 0 15% ;
+  /* float: right; */
 }
 .colors__demo-current-color,
 .colors__demo-prev-color,
@@ -93,6 +100,7 @@ body {
   height: 15px;
   display: inline-block;
   cursor: pointer;
+  border-radius: 7px
 }
 .main__canvas-container{
 }
@@ -113,33 +121,11 @@ body {
   width: 144px;
   height: 144px;
 } 
-/* #figure1{
-  background: #ccc;
-}
-#figure2{
-  background: #ccc;
-}
-#figure3{
-  background: #ccc;
-}
-#figure4{
-  background: #ccc;
-}
-#figure5{
-  background: #ccc;
-}
-#figure6{
-  background: #ccc
-}
-#figure7{
-  background: #ccc;
-}
-#figure8{
-  background: #ccc;
-}
-#figure9{
-  background: #ccc;
-} */
 .circle {
   border-radius: 50%;
+}
+hr {
+  width: 95%;
+  margin: 0 auto;
+  color: #ccc;
 }

@@ -1,19 +1,19 @@
-import {setState, getState} from './state'
-import {unselectTools} from './tools'
+import { setState, getState } from './state'
+import { unselectTools } from './tools'
 
 const paintBucket = document.getElementById('bucket');
-paintBucket.addEventListener('click', (e)=>{
+paintBucket.addEventListener('click', (e) => {
   let state = getState();
-
-  if(paintBucket.classList.contains('selected-tool')){
+  if (paintBucket.classList.contains('selected-tool')) {
     paintBucket.classList.remove('selected-tool');
     state['selectTool'] = '';
-  }else{
+  } else {
     unselectTools();
     paintBucket.classList.add('selected-tool');
     state['selectTool'] = 'bucket';
 
   }
+  console.log(state)
   setState(state);
 
 })

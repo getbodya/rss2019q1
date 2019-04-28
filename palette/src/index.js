@@ -1,4 +1,4 @@
-// import { state } from './modules/state'
+import { state, setState } from './modules/state'
 
 import figure from './modules/figure'
 import colors from './modules/colors'
@@ -10,9 +10,10 @@ import move from './modules/move'
 
 import { loadColors } from './modules/tools'
 import { loadCanvas } from './modules/tools'
+import body from './modules/hot-keys'
 
 
-const loadAll = () =>{
+const loadAll = () => {
   loadCanvas();
   loadColors();
 }
