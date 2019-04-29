@@ -6,7 +6,6 @@
   "scripts": {
     "start": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "lint": "npx eslint ./src/"
   },
   "keywords": [],
   "author": "",
