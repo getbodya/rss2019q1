@@ -31,11 +31,10 @@ body {
 .main {
   display: grid;
   grid-template-columns: 3fr 7fr;
-  grid-template-rows: 584px;
+  grid-template-rows: 90vh;
 }
 .main__toolbar{
   grid-column: 1 / 2;
-  
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -45,9 +44,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin: 0 auto;
   width: 90%;
   height: 30%;
+  margin: 0 auto;
   border: 1px #ccc solid;
   font-weight: bold;
   border-radius: 2px;
@@ -77,9 +76,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin: 0 auto;
   width: 90%;
   height: 30%;
+  margin: 0 auto;
   border: 1px #ccc solid;
   font-weight: bold;
   border-radius: 2px;
@@ -90,31 +89,25 @@ body {
 .colors__red-color,
 .colors__blue-color {
   margin: 0 0 0 15% ;
-  /* float: right; */
 }
 .colors__demo-current-color,
 .colors__demo-prev-color,
 .colors__demo-red-color,
 .colors__demo-blue-color {
+  display: inline-block;
   width: 15px;
   height: 15px;
-  display: inline-block;
   cursor: pointer;
   border-radius: 7px
 }
 .main__canvas-container{
 }
 .canvas-container__canvas {
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr); */
-  /* grid-gap: 2%; */
+  position: relative;
+  top: calc(50% - 225px);
   width: 450px;
   height: 450px;
   margin: 0 auto;
-  position: relative;
-  top: calc(50% - 225px);
-  border: 1px black solid;
 }
 .canvas__figure{
   position: absolute;

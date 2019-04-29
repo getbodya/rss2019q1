@@ -1,30 +1,27 @@
-/* eslint-disable no-plusplus */
 import { getState, setState } from './state';
 
 function unselectTools() {
   const state = getState();
   state.selectTool = '';
   const tools = document.querySelector('.toolbar__tools');
-  for (let i = 0; i < tools.children.length; i++) {
+  for (let i = 0; i < tools.children.length; i += 1) {
     if (tools.children[i].classList.contains('selected-tool')) {
       tools.children[i].classList.remove('selected-tool');
     }
+    setState(state);
   }
-  setState();
 }
 function loadCanvas() {
   const state = getState();
   const figures = document.querySelectorAll('.canvas__figure');
-  for (let i = 0; i < figures.length; i++) {
-    const fig = document.getElementById(i);
-
-    fig.style.backgroundColor = state.figures[i].color;
-    fig.style.top = `${state.figures[i].top}px`;
-    fig.style.left = `${state.figures[i].left}px`;
+  for (let i = 0; i < figures.length; i += 1) {
+    figures[i].style.backgroundColor = state.figures[i].color;
+    figures[i].style.top = `${state.figures[i].top}px`;
+    figures[i].style.left = `${state.figures[i].left}px`;
     if (state.figures[i].circle) {
-      fig.classList.add('circle');
+      figures[i].classList.add('circle');
     } else {
-      fig.classList.remove('circle');
+      figures[i].classList.remove('circle');
     }
   }
   const tool = document.getElementById(state.selectTool);

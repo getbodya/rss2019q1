@@ -1,5 +1,6 @@
-import { setState, getState } from './state';
-import { unselectTools } from './tools';
+import { setState, getState } from '../services/state';
+import { unselectTools } from '../services/tools';
+
 
 const move = document.getElementById('move');
 move.addEventListener('click', () => {

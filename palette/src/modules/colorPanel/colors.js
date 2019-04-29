@@ -1,10 +1,9 @@
-import { setState, getState } from './state';
-import { loadColors } from './tools';
+import { setState, getState } from '../services/state';
+import { loadColors } from '../services/tools';
 
 
 const colors = document.querySelectorAll('.colors__demo');
-// eslint-disable-next-line no-plusplus
-for (let i = 0; i < colors.length; i++) {
+for (let i = 0; i < colors.length; i += 1) {
   colors[i].addEventListener('click', () => {
     const state = getState();
     if (state.selectTool === 'choose-color') {

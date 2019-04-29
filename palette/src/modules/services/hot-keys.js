@@ -1,13 +1,13 @@
 import { setState, getState } from './state';
 import { unselectTools } from './tools';
 
+
 const paintBucket = document.getElementById('bucket');
 const chooseColor = document.getElementById('choose-color');
 const move = document.getElementById('move');
 const transform = document.getElementById('transform');
-
-
 const { body } = document;
+
 body.addEventListener('keypress', (e) => {
   const state = getState();
 
@@ -29,7 +29,6 @@ body.addEventListener('keypress', (e) => {
       chooseColor.classList.add('selected-tool');
       state.selectTool = 'choose-color';
     }
-    setState(state);
   } else if (e.keyCode === 101) {
     if (move.classList.contains('selected-tool')) {
       move.classList.remove('selected-tool');

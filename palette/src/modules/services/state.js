@@ -84,7 +84,6 @@ if (localStorage.getItem('state') == null) {
 }
 
 export {
-  defaultState as state,
   setState,
   getState,
 };
