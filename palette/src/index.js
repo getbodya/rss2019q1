@@ -9,8 +9,5 @@ import { loadColors, loadCanvas } from './modules/services/tools';
 import './modules/services/hot-keys';
 
 
-const loadAll = () => {
-  loadCanvas();
-  loadColors();
-};
-window.onload = loadAll;
+loadCanvas();
+loadColors();

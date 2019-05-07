@@ -4,7 +4,7 @@ import { loadColors, loadCanvas } from '../services/tools';
 
 const figures = document.getElementsByClassName('canvas__figure');
 for (let i = 0; i < figures.length; i += 1) {
-  figures[i].addEventListener('mousedown', (e) => {
+  figures[i].addEventListener('mousedown', e => {
     const mousedownX = e.pageX;
     const mousedownY = e.pageY;
     const topPx = +figures[i].style.top.slice(0, -2);
@@ -38,11 +38,11 @@ for (let i = 0; i < figures.length; i += 1) {
       case 'move':
 
         figures[i].style.zIndex = 1000;
-        document.querySelector('.canvas').onmousemove = (event) => {
+        document.querySelector('.canvas').onmousemove = event => {
           figures[i].style.top = `${topPx - (mousedownY - event.pageY)}px`;
           figures[i].style.left = `${leftPx - (mousedownX - event.pageX)}px`;
         };
-        figures[i].onmouseup = (event) => {
+        figures[i].onmouseup = event => {
           document.querySelector('.canvas').onmousemove = null;
           figures[i].style.zIndex = 1;
 
@@ -50,12 +50,13 @@ for (let i = 0; i < figures.length; i += 1) {
           const canvasLeft = document.getElementsByClassName('canvas')[0].offsetLeft;
           const top = event.clientY - canvasTop;
           const left = event.clientX - canvasLeft;
-
-          if (top < 450
-            && top > -153
-            && left > -153
-            && left < 450) {
-            const targetFigureId = ((Math.floor(top / 153)) * 3) + Math.floor(left / 153);
+          const sizeCanvas = 450;
+          const sizeRowCol = 153;
+          if (top < sizeCanvas
+            && top > -sizeRowCol
+            && left > -sizeRowCol
+            && left < sizeCanvas) {
+            const targetFigureId = ((Math.floor(top / sizeRowCol)) * 3) + Math.floor(left / sizeRowCol);
 
             for (let x = 0; x < 9; x += 1) {
               if (state.figures[x].id === targetFigureId) {
