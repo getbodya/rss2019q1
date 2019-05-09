@@ -9,6 +9,7 @@ module.exports = {
     },
     "rules": {
         'arrow-parens': ["error", "as-needed"],
-        'max-len': ["error", { "code": 110 }]
+        'max-len': ["error", { "code": 110 }],
+        'object-curly-newline': ["error", { "multiline": true }]
     }
 };
