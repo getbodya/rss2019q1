@@ -1,0 +1,548 @@
+
+.navigation__burger-checkbox{
+  position: absolute;
+  top: -10%;
+}
+@media only screen and (max-width: 950px) and (min-width: 481px){
+  .header {
+    grid-template-rows: 10vw 2vw;
+  }
+  .header__languages {   
+    grid-column: 2 / 6;
+  }
+  .header__logo {
+    grid-column: 2 / 5;
+  }
+  .header__navigation {
+    grid-column: 1 / 10;
+    grid-row: 1 / 2;
+    align-self: start;
+    text-align: center;
+    display: block;
+    z-index: 1;
+    margin-top: 12vw;
+    margin-left: 0;
+    background: #fff;
+  }
+  .navigation__item{
+    display: none;
+  }
+  .navigation__burger{
+    grid-column: 9 / 10;
+    grid-row: 1 / 2;
+    display: block;
+    position: absolute;
+    right: 4vw;
+    top: 4vw;
+    width: 4vw;
+    height: 4vw;
+    background-image: url("../assets/img/bars-solid.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    border: .2vw #777 solid;
+    border-radius: .5vw;
+  }
+  .navigation__burger-checkbox{
+    display: none;
+  }
+  .navigation__burger-checkbox:checked{
+    display: none;  
+  }
+  .navigation__burger-checkbox:checked ~ .navigation__burger{
+    background-image: url("../assets/img/times-solid.svg");
+  }
+  .navigation__burger-checkbox:checked ~ .navigation__item  {
+    display: block;
+    position: relative;
+    padding: 1.3vw;
+    color: #000;
+    grid-column: 2 / 6;
+    background: #fff;
+  }
+  .nav-burger__checkbox:checked ~ .navigation__item:hover {
+    background: #616fc5;
+    color: white;
+  }
+  .header__login-signin {
+    grid-column: 7 / 9;
+    grid-row: 1 / 2;
+    align-self: end;
+    margin-bottom: 1.4vw;
+  }
+  .login-signin__signin {
+    box-shadow: none;
+  }
+  .tagline__line1 {
+    grid-column: 2 / 9;
+    grid-row: 1 / 2;
+    align-self: end;
+    justify-self: center;
+  }
+  .tagline__line2 {
+    grid-column: 2 / 7;
+    grid-row: 2 / 3;
+    justify-self: start;
+    margin-left: 7vw;
+  }
+  .box-shadow {
+    grid-column: 1 / 4;
+    width: 45%;
+    height: 61%;
+    box-shadow: 0 1.5vw 2vw -1vw #68df;
+  } 
+  .create-account__btn {
+    border-radius: 3vw;
+  }
+  .create-account__google-btn,
+  .create-account__apple-btn {
+    width: 5vw;
+    height: 5vw;
+    line-height: 5vw;
+  }
+  .main__features {
+    display: grid;
+    grid-template-columns: 6fr 10fr 10fr 9fr 5fr;
+    grid-template-rows: 27vw 19vw 19vw 5vw;
+  }
+  .features__first-feature {
+    grid-row: 1 / 2;
+  }
+  .features__second-feature {
+    grid-row: 2 / 3;
+  }
+  .features__third-feature {
+    grid-row: 3 / 4;
+  }
+  .features__first-feature,
+  .features__second-feature,
+  .features__third-feature {
+    grid-column: 1 / 3;
+    align-self: end;
+    justify-self: center;
+    width: 80%;
+  }
+  .first-feature__img,
+  .second-feature__img,
+  .third-feature__img {
+    width: 6vw;
+  }
+  .features__fourth-feature {
+    grid-column: 3 / 6;
+    grid-row: 1 / 3;
+    align-self: end;
+    justify-self: end;
+    text-align: right;
+    margin-right: 2vw;
+  }
+  .features__learn-more {
+    grid-column: 3 / 6;
+    grid-row: 3 / 4;
+    padding: 1.5vw 3vw;
+    border-radius: 3vw;
+  }
+  .partners__img {
+    grid-column: 1 / 3;
+    width: 94vw;
+  }
+  .main__rewiews-and-device {
+    grid-template-rows: 22vw 23vw 7vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .rewiews-and-device__rewiew {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    align-self: start;
+    margin: 5vw 0 0 5vw;
+  }
+  .rewiews-and-device_device {
+    grid-column: 1 / 5;
+    grid-row: 2 / 3;
+    width: 88%;
+    padding-left: 3vw;
+  }
+  .rewiews-and-device_download-app {
+    grid-column: 5 / 7;
+    grid-row: 2 / 3;
+    align-self: end;
+    justify-self: end;
+  }
+  .download-app__itunes,
+  .download-app__google {
+    width: 20vw;
+  }
+  .main__support-donate {
+    grid-template-rows: 10vw 10vw;
+  }
+  .support-donate__headline {
+    grid-column: 1 / 4;
+  }
+  .support-donate__support-btns {
+    grid-column: 1 / 4;
+  }
+  .headline__content:first-child {
+    color: black;
+  }
+  .main__privacy-and-menu {
+    grid-template-rows: 24vw 18vw;
+  }
+  .privacy-and-menu__privacy {
+    grid-column: 1 / 12;
+  }
+  .privacy__img {
+    width: 90vw;
+  }
+  .privacy-and-menu__contacts {
+    grid-column: 1 / 4;
+  }
+  .privacy-and-menu__nmail {
+    grid-column: 9 / 12;
+  } 
+  .privacy-and-menu__legal {
+    grid-column: 6 / 9;
+  }
+  .privacy-and-menu__company {
+    grid-column: 4 / 6;
+  }
+  .border1,
+  .border2,
+  .border3,
+  .border4,
+  .border6,
+  .border7{
+    visibility: hidden;
+  }
+}
+
+.navigation__burger-checkbox{
+  position: absolute;
+  top: -10%;
+}
+@media only screen and (max-width: 950px) and (min-width: 851px){
+  body {
+    font-size: 18px;
+  }
+  .header__languages {   
+    font-size: 9px;
+  }
+  .header__logo {
+    font-size: 5vw;
+  }
+  .navigation__burger-checkbox:checked ~ .navigation__item  {
+    font-size: 18px;
+  }
+  .header__login-signin {
+    font-size: 18px;
+  }
+  .tagline__line1 {
+    font-size: 45px;
+  }
+  .tagline__line2 {
+    font-size: 27px;
+  }
+  .create-account__google-btn {
+    font-size: 16px;
+  }
+  .create-account__apple-btn {
+    font-size: 21px;
+  }
+
+  .social-link__item{
+    font-size: 18px;
+  }
+  .first-feature__title,
+  .second-feature__title,
+  .third-feature__title {
+    font-size: 27px;
+  }  
+  .first-feature__subtitle,
+  .second-feature__subtitle,
+  .third-feature__subtitle {
+    font-size: 17px;
+  }
+  .first-feature__description,
+  .second-feature__description,
+  .third-feature__description {
+    font-size: 14px;
+  }
+  .fourth-feature__title {
+    font-size: 54px;
+  }
+  .fourth-feature__description {
+    font-size: 19px;
+  }
+  .learn-more__link{
+    font-size: 15px;
+  }
+  .rewiews-and-device__rewiew {
+    font-size: 18px;
+  }
+  .rewiew__author {
+    font-size: 11px;
+  }
+  .device__title {
+    font-size: 27px;
+  }
+  .device__description {
+    font-size: 18px
+  }
+  .support-donate__headline {
+    font-size: 17px;
+  }
+  .headline__content:first-child {
+    font-size: 27px;
+  }
+  .privacy__text {
+    font-size: 15px;
+  }
+  .privacy-and-menu__contacts {
+    font-size: 13px;
+  }
+  .privacy-and-menu__nmail {
+    font-size: 14px;
+  } 
+  .privacy-and-menu__legal {
+    font-size: 14px;
+  }
+  .privacy-and-menu__company {
+    font-size: 14px;
+  }
+  
+  .legal__link,
+  .company__link,
+  .nmail__link {
+    font-size: 14px;
+  }
+  .footer__footer-links {
+    font-size: 12px;
+  }
+  .footer__rights {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 849px) and (min-width: 680px){
+  body {
+    font-size: 14px;
+  }
+  .header__logo {
+    font-size: 25px;
+  }
+  .header__languages {   
+    font-size: 8px;
+  }
+  .navigation__burger-checkbox:checked ~ .navigation__item  {
+    font-size: 16px;
+  }
+  .header__login-signin {
+    font-size: 16px;
+  }
+  .tagline__line1 {
+    font-size: 33px;
+  }
+  .tagline__line2 {
+    font-size: 20px;
+  }
+  .create-account__btns {
+    grid-column: 1 / 4;
+  }
+  .create-account__google-btn {
+    font-size: 14px;
+  }
+  .create-account__apple-btn {
+    font-size: 16px;
+  }
+
+  .social-link__item{
+    font-size: 17px;
+  }
+  .first-feature__title,
+  .second-feature__title,
+  .third-feature__title {
+    font-size: 20px;
+  }  
+  .first-feature__subtitle,
+  .second-feature__subtitle,
+  .third-feature__subtitle {
+    font-size: 14px;
+  }
+  .first-feature__description,
+  .second-feature__description,
+  .third-feature__description {
+    font-size: 11px;
+  }
+  .fourth-feature__title {
+    font-size: 40px;
+  }
+  .fourth-feature__description {
+    font-size: 14px;
+  }
+  .learn-more__link{
+    font-size: 12px;
+  }
+  .rewiews-and-device__rewiew {
+    visibility: hidden;
+  }
+  .rewiews-and-device_device {
+    padding-right: 12%;
+  }
+  .device__title {
+    font-size: 23px;
+  }
+  .device__description {
+    font-size: 15px;
+  }
+  .support-donate__headline {
+    font-size: 17px;
+  }
+  .headline__content:first-child {
+    font-size: 27px;
+  }
+  .privacy__text {
+    font-size: 15px;
+  }
+  .privacy-and-menu__contacts {
+    font-size: 10px;
+  }
+  .privacy-and-menu__nmail {
+    font-size: 10px;
+  } 
+  .privacy-and-menu__legal {
+    font-size: 10px;
+  }
+  .privacy-and-menu__company {
+    font-size: 10px;
+  }
+  
+  .legal__link,
+  .company__link,
+  .nmail__link {
+    font-size: 10px;
+  }
+  .footer__footer-links {
+    font-size: 9px;
+  }
+  .footer__rights {
+    font-size: 9px;
+  }
+}
+@media only screen and (max-width: 679px) and (min-width: 481px){
+  body {
+    font-size: 11px;
+  }
+  .header__logo {
+    font-size: 25px;
+  }
+  .header__languages {   
+    font-size: 8px;
+  }
+  .navigation__burger-checkbox:checked ~ .navigation__item  {
+    font-size: 16px;
+  }
+  .header__login-signin {
+    font-size: 11px;
+  }
+  .tagline__line1 {
+    font-size: 28px;
+  }
+  .tagline__line2 {
+    font-size: 17px;
+  }
+  .create-account__btns {
+    grid-column: 1 / 4;
+  }
+  .create-account__google-btn {
+    font-size: 9px;
+  }
+  .create-account__apple-btn {
+    font-size: 10px;
+  }
+
+  .social-link__item{
+    font-size: 13px;
+  }
+  .main__features {
+    grid-template-rows: 27vw 30vw 28vw 5vw;
+}
+  .first-feature__title,
+  .second-feature__title,
+  .third-feature__title {
+    font-size: 15px;
+  }  
+  .first-feature__subtitle,
+  .second-feature__subtitle,
+  .third-feature__subtitle {
+    font-size: 10px;
+  }
+  .first-feature__description,
+  .second-feature__description,
+  .third-feature__description {
+    font-size: 10px;
+  }
+  .fourth-feature__title {
+    font-size: 30px;
+  }
+  .fourth-feature__description {
+    font-size: 11px;
+  }
+  .learn-more__link{
+    font-size: 12px;
+  }
+  .rewiews-and-device__rewiew {
+    visibility: hidden;
+  }
+  .rewiews-and-device_device {
+    padding-right: 12%;
+  }
+  .device__title {
+    font-size: 18px;
+  }
+  .device__description {
+    font-size: 12px;
+  }
+  .support-donate__headline {
+    font-size: 14px;
+  }
+  .headline__content:first-child {
+    font-size: 17px;
+  }
+    
+  .main__privacy-and-menu {
+    grid-template-rows: 24vw 24vw;
+  }
+  .privacy__text {
+    font-size: 11px;
+  }
+  .privacy-and-menu__contacts {
+    grid-column: 1 / 5;
+    font-size: 9px;
+  }
+  .privacy-and-menu__nmail {
+    width: 60%;
+    grid-column: 9 / 13;
+    margin-right: 3vw;
+    font-size: 9px;
+  } 
+  .privacy-and-menu__legal {
+    grid-column: 7 / 10;
+    margin-right: 0;
+
+    font-size: 9px;
+  }
+  .privacy-and-menu__company {
+    grid-column: 5 / 7;
+
+    font-size: 9px;
+  }
+  
+  .legal__link,
+  .company__link,
+  .nmail__link {
+    font-size: 9px;
+  }
+  .footer__footer-links {
+    font-size: 8px;
+  }
+  .footer__rights {
+    font-size: 8px;
+  }
+}
