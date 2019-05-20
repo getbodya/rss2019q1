@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #888;
+    width: 100%;
+    height: 4vh;
+}
+
+.header__logo {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+}
+
+.app {
+    width: 100%;
+    height: 96vh;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1 1 2 1;
+}
+
+
+
+
+.app__tools-box {
+    flex-grow: 0;
+    width: 100px;
+    background: moccasin;
+    display: flex;
+    align-items: center;
+}
+.app__tools-panel {
+    display: flex;
+    flex-wrap: wrap;
+}
+.tools-panel__pen,
+.tools-panel__mirror-pen,
+.tools-panel__paint-bucket,
+.tools-panel__paint-all,
+.tools-panel__color-select {
+    width: 50px;
+    height: 50px;
+}
+
+.app__frame-box {
+    flex-grow: 0;
+    width: 150px;
+    background: rgb(114, 88, 44);
+}
+
+
+
+.app__canvas-box{
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.canvas-box__canvas {
+    background: yellow;
+}
+
+
+
+.app__control-panel-box {
+    flex-grow: 0;
+    width:250px;
+    background: #ccc;
+
+}
