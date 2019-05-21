@@ -2,6 +2,6 @@ const State = {
     selectTool : '',
     currentColor: 'red',
     prevColor: 'white',
-    toolSize: 2,
+    toolSize: 1,
 }
 export default State;

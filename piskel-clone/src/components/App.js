@@ -9,9 +9,9 @@ export default class App {
 
 	run() {
     window.state = this.state;
-    const canvas = new Canvas;
+    window.canvas = new Canvas;
+    window.toolsPanel = new ToolsPanel;
     canvas.imposeEvent();
-    const toolsPanel = new ToolsPanel;
     toolsPanel.imposeEvents();
 	}
 }
