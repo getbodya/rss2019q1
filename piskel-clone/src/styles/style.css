@@ -39,13 +39,17 @@
     display: flex;
     flex-wrap: wrap;
 }
-.tools-panel__pen,
-.tools-panel__mirror-pen,
-.tools-panel__paint-bucket,
-.tools-panel__paint-all,
-.tools-panel__color-select {
-    width: 50px;
-    height: 50px;
+.tools-panel__item {
+  width: 48px;
+  height: 48px;
+  border: black 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;}
+
+.tools-panel__icon{
+  color: black;
 }
 
 .app__frame-box {
@@ -54,16 +58,18 @@
     background: rgb(114, 88, 44);
 }
 
-
-
 .app__canvas-box{
     flex-grow: 2;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .canvas-box__canvas {
     background: yellow;
+    width: 480px;
+    height: 480px;
+    image-rendering: pixelated;
 }
 
 

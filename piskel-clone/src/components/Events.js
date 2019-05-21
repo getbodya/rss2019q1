@@ -1,20 +1,21 @@
 const Events = {
-    imposeTools() {
-        this.pen();
-        this.paintBucket();
-    },
-    pen() {
-        const penBtn = document.getElementsByClassName('tools-panel__pen')[0];
-        penBtn.addEventListener('click',()=>{
-            console.log('pen')
-        })
-    },
-    paintBucket(){
-        const paintBucketBtn = document.getElementsByClassName('tools-panel__paint-bucket')[0];
-        paintBucketBtn.addEventListener('click',()=>{
-            console.log('paintBucket')
-        })
-    },
+	imposeTools() {
+		this.pen();
+		this.paintBucket();
+	},
+	pen() {
+		const penBtn = document.querySelector('.pen');
+		penBtn.addEventListener('click', () => {
+      state.selectTool = 'pen';
+      console.log(penBtn.classList[1])
+		})
+	},
+	paintBucket() {
+		const paintBucketBtn = document.querySelector('.paint-bucket');
+		paintBucketBtn.addEventListener('click', () => {
+			state.selectTool = 'paintBucket';
+		})
+	},
 };
 
 export default Events;

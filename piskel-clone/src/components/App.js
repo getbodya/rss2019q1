@@ -1,12 +1,17 @@
 import Events from './Events';
+import Canvas from './Canvas';
+import ToolsPanel from './ToolsPanel';
 export default class App {
 
-    constructor(state){
-        this.state = state;
-    }
+	constructor(state) {
+		this.state = state;
+	}
 
-    run() {
-        Events.imposeTools()
-    }
-
+	run() {
+    window.state = this.state;
+    const canvas = new Canvas;
+    canvas.imposeEvent();
+    const toolsPanel = new ToolsPanel;
+    toolsPanel.imposeEvents();
+	}
 }

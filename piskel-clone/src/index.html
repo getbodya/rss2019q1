@@ -15,20 +15,20 @@
 	<main class="app">
 		<section class="app__tools-box">
 			<div class="app__tools-panel">
-				<button class="tools-panel__pen"><i class="fas fa-pen"></i></button>
-				<button class="tools-panel__mirror-pen "><i class="fas fa-grip-lines-vertical"></i></button>
-				<button class="tools-panel__paint-bucket"><i class="fas fa-fill-drip"></i></button>
-				<button class="tools-panel__paint-all"><i class="fab fa-bitbucket"></i></button>
-				<button class="tools-panel__color-select "></button>
+				<div class="tools-panel__item pen" data-tool = 'pen'><i class="tools-panel__icon fas fa-pen"></i></div>
+				<div class="tools-panel__item mirror-pen " data-tool = 'mirrorPen'><i class="tools-panel__icon fas fa-grip-lines-vertical"></i></div>
+				<div class="tools-panel__item paint-bucket" data-tool = 'paintBucket'><i class="tools-panel__icon fas fa-fill-drip"></i></div>
+				<div class="tools-panel__item paint-all" data-tool = 'paintAll'><i class="tools-panel__icon fab fa-bitbucket"></i></div>
+				<div class="tools-panel__item color-select " data-tool = 'colorSelect'></div>
 			</div>
 		</section>
 		<section class="app__frame-box">
 
 		</section>
 		<section class="app__canvas-box">
-				<canvas class="canvas-box__canvas" id="canvas" width="480px" height="480px">
+				<canvas class="canvas-box__canvas" id="canvas" width="32px" height="32px">
 
-						</canvas>
+				</canvas>
 		</section>
 		<section class="app__control-panel-box">
 
