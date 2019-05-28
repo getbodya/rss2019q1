@@ -1,0 +1,41 @@
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 300px;
+    height: 30px;
+    margin: 0 auto;
+}
+.pagination-chip {
+    position: relative;
+    text-align: center;
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    box-shadow: black 0px 2px 0px 1px;
+    cursor: pointer;
+    background: white;
+
+}
+.chip-first-page {
+    display: none;
+}
+.chip-prev-page{
+    display: none;
+}
+.hidden-chip{
+  display: none;
+}
+.show-chip{
+  display: block
+}
+.pop-up {
+    position: absolute;
+    top:-20px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background:white;
+}

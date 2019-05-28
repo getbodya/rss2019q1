@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppView.prototype.renderLayout should be renderLayout correctly 1`] = `"<div class=\\"app\\"><div class=\\"app__search-panel\\"><input class=\\"search-panel__input\\" placeholder=\\"SEARCH\\"><button class=\\"search-panel__btn\\"><i class=\\"fas fa-search\\"></i></button></div><h1 class=\\"app__app-label\\">YOUTUBE CLIENT</h1><div class=\\"app__search-result\\"><div class=\\"cards\\"></div></div></div>"`;
