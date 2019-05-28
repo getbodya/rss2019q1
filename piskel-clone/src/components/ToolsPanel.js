@@ -1,125 +1,125 @@
 export default class ToolsPanel {
   constructor() {
-    this.toolsPanel = document.querySelectorAll('.tools-panel__item')
+    this.toolsPanelItems = document.querySelectorAll('.tools-panel__item');
+    this.sizePanel = document.querySelectorAll('.size-panel__item');
+    this.colorInputs = document.querySelectorAll('.color-panel__input');
   }
-  pen(x, y) {
+  static paintPixel(x, y) {
     const ctx = document.querySelector('.canvas-box__canvas').getContext('2d');
-    const { currentColor, toolSize } = state;
+    const { currentColor } = state;
     ctx.fillStyle = currentColor;
-    ctx.fillRect(x, y, toolSize, toolSize);
+    ctx.fillRect(x, y, 1, 1);
   }
-
-  verticalMirrorPen(x, y) {
-    const ctx = document.querySelector('.canvas-box__canvas').getContext('2d');
-    const { currentColor, toolSize } = state;
+  static pen(x, y) {
+    ToolsPanel.paintPixel(x, y)
+  }
+  static verticalMirrorPen(x, y) {
     const mirrorX = 31 - x;
-    console.log(x, mirrorX)
-    ctx.fillStyle = currentColor;
-    ctx.fillRect(x, y, toolSize, toolSize);
-    ctx.fillRect(mirrorX, y, toolSize, toolSize);
+    ToolsPanel.paintPixel(x, y);
+    ToolsPanel.paintPixel(mirrorX, y)
   }
-
-  horisontalMirrorPen(x, y) {
-    const ctx = document.querySelector('.canvas-box__canvas').getContext('2d');
-    const { currentColor, toolSize } = state;
+  static horisontalMirrorPen(x, y) {
     const mirrorY = 31 - y;
-    console.log(y, mirrorY)
-    ctx.fillStyle = currentColor;
-    ctx.fillRect(x, y, toolSize, toolSize);
-    ctx.fillRect(x, mirrorY, toolSize, toolSize);
+    ToolsPanel.paintPixel(x, y);
+    ToolsPanel.paintPixel(x, mirrorY)
   }
-  bothMirrorPen(x, y) {
-    const ctx = document.querySelector('.canvas-box__canvas').getContext('2d');
-    const { currentColor, toolSize } = state;
+  static bothMirrorPen(x, y) {
     const mirrorY = 31 - y;
     const mirrorX = 31 - x;
-    console.log(y, mirrorY)
-    ctx.fillStyle = currentColor;
-    ctx.fillRect(x, y, toolSize, toolSize);
-    ctx.fillRect(x, mirrorY, toolSize, toolSize);
-    ctx.fillRect(mirrorX, y, toolSize, toolSize);
-    ctx.fillRect(mirrorX, mirrorY, toolSize, toolSize);
+    ToolsPanel.paintPixel(x, y);
+    ToolsPanel.paintPixel(x, mirrorY);
+    ToolsPanel.paintPixel(mirrorX, y);
+    ToolsPanel.paintPixel(mirrorX, mirrorY);
   }
-  paintBucket(x, y) {
+  static paintBucket(x, y) {
     const ctx = document.querySelector('.canvas-box__canvas').getContext('2d');
-
-    const startPixel = ctx.getImageData(x, y, 1, 1).data.join('')
-    function comparePixel(x, y, prevPx) {
+    const startPixel = ctx.getImageData(x, y, 1, 1).data;
+    function pixelCompare(x, y) {
       if (-1 < x && x < 32 && -1 < y && y < 32) {
-        const { currentColor } = state;
-        ctx.fillStyle = currentColor;
-        ctx.fillRect(x, y, 1, 1);
-        let topPixel = ctx.getImageData(x, y - 1, 1, 1).data.join('')
-        let rightPixel = ctx.getImageData(x + 1, y, 1, 1).data.join('')
-        let bottomPixel = ctx.getImageData(x, y + 1, 1, 1).data.join('')
-        let leftPixel = ctx.getImageData(x - 1, y, 1, 1).data.join('')
-        switch (prevPx) {
-          case 'bot':
-            bottomPixel = null;
-            break;
-          case 'right':
-            rightPixel = null;
-            break;
-          case 'top':
-            topPixel = null;
-            break;
-          case 'left':
-            leftPixel = null;
-            break;
-          default:
-            break;
+        ToolsPanel.paintPixel(x, y);
+        const nearbyPixels = {
+          topPixel: {
+            pixelX: x,
+            pixelY: y - 1,
+            data: ctx.getImageData(x, y - 1, 1, 1).data,
+          },
+          rightPixel: {
+            pixelX: x + 1,
+            pixelY: y,
+            data: ctx.getImageData(x + 1, y, 1, 1).data,
+          },
+          bottomPixel: {
+            pixelX: x,
+            pixelY: y + 1,
+            data: ctx.getImageData(x, y + 1, 1, 1).data,
+          },
+          leftPixel: {
+            pixelX: x - 1,
+            pixelY: y,
+            data: ctx.getImageData(x - 1, y, 1, 1).data,
+          },
         }
-        if (startPixel === topPixel) {
-          const prevPixel = 'bot'
-          comparePixel(x, y - 1, prevPixel)
+        for (let key in nearbyPixels) {
+          const { pixelX, pixelY, data } = nearbyPixels[key];
+          if (_.isEqual(startPixel, data)) {
+            pixelCompare(pixelX, pixelY)
+          }
         }
-        if (startPixel === rightPixel) {
-          const prevPixel = 'left'
-
-          comparePixel(x + 1, y, prevPixel)
-
-        }
-        if (startPixel === bottomPixel) {
-          const prevPixel = 'top'
-
-          comparePixel(x, y + 1, prevPixel)
-
-        }
-        if (startPixel === leftPixel) {
-          const prevPixel = 'right'
-
-          comparePixel(x - 1, y, prevPixel)
-
-        }
-      } else {
-        return;
       }
-      return
+      return;
     }
-    comparePixel(x, y);
+    pixelCompare(x, y);
   }
-  paintAll() {
+  static paintAll() {
     const ctx = document.querySelector('.canvas-box__canvas').getContext('2d');
     const { currentColor } = state;
     ctx.fillStyle = currentColor;
     ctx.fillRect(0, 0, 32, 32);
   }
-
   unselectTools() {
     state.selectTool = '';
     const tools = document.querySelectorAll('.tools-panel__item');
     tools.forEach(tool => {
-      if (tool.classList.contains('select-tool')) {
-        tool.classList.remove('select-tool');
+      if (tool.classList.contains('selected')) {
+        tool.classList.remove('selected');
       }
     })
   }
-  imposeEvents() {
-    this.toolsPanel.forEach(item => {
+  unselectSize() {
+    this.sizePanel.forEach(tool => {
+      if (tool.classList.contains('selected')) {
+        tool.classList.remove('selected');
+      }
+    })
+  }
+  run() {
+    this.toolsPanelItems.forEach(item => {
       item.addEventListener('click', () => {
         this.unselectTools();
-        item.classList.add('select-tool');
+        item.classList.add('selected');
         state.selectTool = item.dataset.tool;
+      })
+    });
+    this.sizePanel.forEach(item => {
+      if (item.dataset.size === '1') {
+        item.classList.add('selected');
+      }
+      item.addEventListener('click', () => {
+        this.unselectSize();
+        item.classList.add('selected');
+        state.toolSize = item.dataset.size
+      })
+    })
+    this.colorInputs.forEach(item => {
+      if (item.classList.contains('current-color')) {
+        item.value = state.currentColor;
+      } else if (item.classList.contains('prev-color')) {
+        item.value = state.prevColor;
+      }
+      item.addEventListener('input', (e) => {
+        state.prevColor = state.currentColor;
+        state.currentColor = item.value;
+        document.querySelector('.prev-color').value = state.prevColor;
       })
     })
   }

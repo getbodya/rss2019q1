@@ -10,30 +10,99 @@
 </head>
 <body>
 	<header class="header">
-		<h1 class="header__logo">piskel-clone</h1>
+    <h1 class="header__logo">piskel-clone</h1>
+    <button class="header__fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
 	</header>
 	<main class="app">
 		<section class="app__tools-box">
 			<div class="app__tools-panel">
-				<div class="tools-panel__item pen " data-tool = 'pen'><i class="tools-panel__icon fas fa-pen"></i></div>
-				<div class="tools-panel__item mirror-pen " data-tool = 'verticalMirrorPen'><i class="tools-panel__icon fas fa-grip-lines-vertical"></i></div>
-				<div class="tools-panel__item mirror-pen " data-tool = 'horisontalMirrorPen'>_</div>
-				<div class="tools-panel__item mirror-pen " data-tool = 'bothMirrorPen'>+</div>
-				<div class="tools-panel__item paint-bucket" data-tool = 'paintBucket'><i class="tools-panel__icon fas fa-fill-drip"></i></div>
-				<div class="tools-panel__item paint-all" data-tool = 'paintAll'><i class="tools-panel__icon fab fa-bitbucket"></i></div>
-				<div class="tools-panel__item color-select " data-tool = 'colorSelect'></div>
+        <div class="panel-size">
+            <div class="size-panel__item" data-size="1">1</div>
+            <div class="size-panel__item" data-size="2">2</div>
+            <div class="size-panel__item" data-size="3">3</div>
+            <div class="size-panel__item" data-size="4">4</div>
+          </div>
+				<div class="tools-panel__item pen" data-tool = 'pen'>
+          <i class="tools-panel__icon fas fa-pen"></i>
+          <div class="tools-panel__pop-up">
+            <p>asdas</p>
+          </div>
+        </div>
+				<div class="tools-panel__item mirror-pen " data-tool = 'verticalMirrorPen'>
+          <i class="tools-panel__icon fas fa-grip-lines-vertical"></i>
+          <div class="tools-panel__pop-up">
+            +ctrl - horizontal
+            +vertical - both
+          </div>
+        </div>
+				<!-- <div class="tools-panel__item horisontal-mirror-pen " data-tool = 'horisontalMirrorPen'>_</div>
+				<div class="tools-panel__item both-mirror-pen " data-tool = 'bothMirrorPen'>+</div> -->
+				<div class="tools-panel__item paint-bucket" data-tool = 'paintBucket'>
+          <i class="tools-panel__icon fas fa-fill-drip"></i>
+          <div class="tools-panel__pop-up">
+              <p>asdas</p>
+            </div>
+        </div>
+				<div class="tools-panel__item paint-all" data-tool = 'paintAll'>
+          <i class="tools-panel__icon fab fa-bitbucket"></i>
+          <div class="tools-panel__pop-up">
+              <p>asdas</p>
+            </div>
+        </div>
+				<div class="tools-panel__item eraser" data-tool = 'eraser'>
+          <i class="tools-panel__icon fas fa-eraser"></i>
+          <div class="tools-panel__pop-up">
+              <p>asdas</p>
+            </div>
+        </div>
+        <div class="color-panel">
+          <input class="color-panel__input secondary-color" type="color">
+          <input class="color-panel__input primary-color" type="color">
+        </div>
 			</div>
 		</section>
 		<section class="app__frame-box">
-
+      <div class="frame-box__list"></div>
+      <div class="frame-box__new-item-btn">
+        <span class="new-item-btn__title"> + new frame</span>
+      </div>
 		</section>
 		<section class="app__canvas-box">
-				<canvas class="canvas-box__canvas" id="canvas" width="32px" height="32px">
+				<!-- <canvas class="canvas-box__canvas" id="canvas" width="32px" height="32px">
 
-				</canvas>
+				</canvas> -->
 		</section>
 		<section class="app__control-panel-box">
+      <div class="control-panel-box__preview">
+        <canvas class="preview__canvas" width="32px" height="32px">
 
+        </canvas>
+        <input class="preview__input" type="range" min="1" max="60" value="24" step="10">
+      </div>
+      <div class="control-panel-box__options">
+        <div class="options__settings">
+          <div class="settings__btn">
+              <i class="fas fa-cog"></i>
+          </div>
+          <div class="settings__window">
+            <ul class="settings__canvas-size">
+                <h3 class="settings__canvas-size-title">Canvas size:</h3>
+                <li class="settings__canvas-size-item"><input class="settings__canvas-size-input" type="radio" name="canvas-size" value='32'>32x32</li>
+                <li class="settings__canvas-size-item"><input class="settings__canvas-size-input" type="radio" name="canvas-size" value='64'>64x64</li>
+                <li class="settings__canvas-size-item"><input class="settings__canvas-size-input" type="radio" name="canvas-size" value='128'>128x128</li>
+              </ul>
+              <button class="settings__save-btn">Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="control-panel-box__layer-panel">
+        <div class="layer-panel__layer-list">
+
+        </div>
+        <div class="layer-panel__new-layer-btn">
+          <span class="new-layer-btn__title">+ new layer</span>
+        </div>
+      </div>
 		</section>
 
 	</main>

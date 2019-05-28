@@ -1,17 +1,38 @@
-import Events from './Events';
-import Canvas from './Canvas';
+// import Canvas from './Canvas';
 import ToolsPanel from './ToolsPanel';
-export default class App {
+// import Frame from './Frame';
+import Layer from './Layer';
+import Preview from './Preview';
+import fullScreenMode from './FullScreenMode';
 
-	constructor(state) {
-		this.state = state;
+
+import Canvas from './Canvas/'
+import State from '../State';
+import './Tools/';
+import Settings from './Options/Settings'
+import Frames from './Frames/'
+// var canvas = new Canvas();
+var layer = new Layer();
+var toolsPanel = new ToolsPanel();
+// window.frame = new Frame();
+
+export default class App {
+	constructor() {
 	}
 
 	run() {
+
+    var state = new State();
+    state.run();
+
+    Canvas.renderCanvas();
+    Settings.run();
+    Frames.run();
+    fullScreenMode();
     window.state = this.state;
-    window.canvas = new Canvas;
-    window.toolsPanel = new ToolsPanel;
-    canvas.imposeEvent();
-    toolsPanel.imposeEvents();
+    // frame.run();
+    layer.run();
+    Preview.run()
+
 	}
 }
