@@ -8,6 +8,13 @@ export default class Canvas{
     canvas.setAttribute('width', `${newSize}px`);
     canvas.setAttribute('height',`${newSize}px`);
   }
+  static transferDataToFrame(){
+    const canvasCtx = document.querySelector('.canvas-box__canvas').getContext('2d');
+    const { canvasSize } = State.getState()
+    const canvasData = canvasCtx.getImageData(0,0,canvasSize,canvasSize);
+    const selectFrameCtx = document.querySelector('.selected-frame').getContext('2d');
+    selectFrameCtx.putImageData(canvasData, 0, 0)
+  }
   static makeCanvas(size){
     const canvas = document.createElement('canvas');
     canvas.setAttribute('class','canvas-box__canvas');

@@ -1,15 +1,17 @@
 import State from "../../../State";
-import Pen from "../../Tools";
+import Pen from "../../Tools/Pen";
 import VerticalMirrorPen from "../../Tools/VerticalMirrorPen";
 import HorisontalMirrorPen from "../../Tools/HorisontalMirrorPen";
 import BothMirrorPen from "../../Tools/BothMirrorPen";
 import Eraser from "../../Tools/Eraser";
 import PaintBucket from "../../Tools/PaintBucket";
+import Canvas from "../view/Canvas";
 
 const imposeEventToCanvas = (canvas) => {
   let isDown = false;
 
   canvas.addEventListener('mousedown', e => {
+
     e.preventDefault();
     const mouseClick = e.button;
     isDown = true;
@@ -80,6 +82,7 @@ const imposeEventToCanvas = (canvas) => {
 
     const ctx = canvas.getContext('2d');
     const data = ctx.getImageData(0, 0, 32, 32);
+    Canvas.transferDataToFrame();
     isDown = false;
   });
   canvas.addEventListener('mouseout', e => {

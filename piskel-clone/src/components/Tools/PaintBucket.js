@@ -48,7 +48,6 @@ export default class PaintBucket extends Tool{
   }
   static run(){
     const className = '.paint-bucket';
-    console.log(PaintBucket.paint)
     PaintBucket.imposeEventToBtn(className)
   }
 }
