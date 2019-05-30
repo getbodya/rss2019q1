@@ -23,7 +23,7 @@ export default class Canvas{
     return canvas;
   }
   static renderCanvas(){
-    const container = document.querySelector('.app__canvas-box');
+    const container = document.querySelector('.canvas-box__container');
     const state = State.getState();
     const {canvasSize} = state
     const canvas = Canvas.makeCanvas(canvasSize);
@@ -31,5 +31,6 @@ export default class Canvas{
     canvas.oncontextmenu = () => {return false};
 
     container.appendChild(canvas);
+    // Canvas.runPrecanvas();
   }
 }

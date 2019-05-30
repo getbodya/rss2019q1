@@ -177,8 +177,30 @@
     justify-content: center;
     align-items: center;
 }
-
+.canvas-box__container{
+  position: relative;
+  width: 480px;
+  height: 480px;
+}
 .canvas-box__canvas {
+  /* background: antiquewhite; */
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  image-rendering: pixelated;
+  border: 1px solid black;
+}
+
+.canvas-box__second-canvas {
+  /* background: antiquewhite; */
+  position: absolute;
+
+  width: 480px;
+  height: 480px;
+  image-rendering: pixelated;
+  border: 1px solid black;
+}
+.canvas-box__precanvas {
   background: antiquewhite;
   width: 480px;
   height: 480px;
@@ -298,4 +320,10 @@
 }
 .new-layer-btn__title {
   font-size: 16px;
+}
+.cursor {
+  position: absolute;
+  left: -50%;
+  background: black;
+  opacity: 0.5;
 }

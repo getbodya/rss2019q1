@@ -1,6 +1,3 @@
-const GIFEncoder = require('gifencoder');
-const { createCanvas } = require('canvas');
-// const fs = require('fs');
 
 export default class Preview {
   constructor() {
