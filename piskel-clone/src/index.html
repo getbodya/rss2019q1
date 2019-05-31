@@ -14,7 +14,6 @@
 <body>
   <header class="header">
     <h1 class="header__logo">piskel-clone</h1>
-    <button class="header__fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
   </header>
   <main class="app">
     <section class="app__tools-box">
@@ -64,6 +63,25 @@
             <p>asdas</p>
           </div>
         </div>
+        <div class="tools-panel__item reactangle" data-tool='reactangle'>
+          react
+          <div class="tools-panel__pop-up">
+            <p>asdas</p>
+          </div>
+        </div>
+        <div class="tools-panel__item circle" data-tool='circle'>
+          O
+          <div class="tools-panel__pop-up">
+            <p>asdas</p>
+          </div>
+        </div>
+        <div class="tools-panel__item bright" data-tool='bright'>
+          +/-
+          <div class="tools-panel__pop-up">
+            <p>left mouse - ligthen</p>
+            <p>right mouse - Darken</p>
+          </div>
+        </div>
         <div class="color-panel">
           <input class="color-panel__input secondary-color" type="color">
           <input class="color-panel__input primary-color" type="color">
@@ -75,16 +93,25 @@
       <div class="frame-box__new-item-btn">
         <span class="new-item-btn__title"> + new frame</span>
       </div>
+      <img src="assets/35551.gif" alt="" srcset="">
     </section>
     <section class="app__canvas-box">
       <div class="canvas-box__container"></div>
     </section>
     <section class="app__control-panel-box">
       <div class="control-panel-box__preview">
+          <div class="prewiew__export-window hidden__export-window">
+            <label class="export-window__save-btn-label" for="save-btn">Save</label>
+            <a class="export-window__save-btn" id="save-btn">save</a>
+          </div>
         <canvas class="preview__canvas" width="32px" height="32px">
-
         </canvas>
-        <img class="preview__img" src="" width="100px" height="100px" alt="">
+        <div class="preview__buttons">
+
+          <button class="preview__export-btn" data-open='false'>export</button>
+
+          <button class="preview__fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+        </div>
         <input class="preview__input" type="range" min="1" max="24" value="12" step="1">
       </div>
       <div class="control-panel-box__options">

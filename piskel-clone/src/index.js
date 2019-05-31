@@ -3,8 +3,7 @@ import App from './components/App';
 // import State from './state/State'
 var _ = require('lodash');
 require ('webpack-jquery-ui/sortable') ;
-var Gif = require ('gif.js.optimized');
-var Animated_GIF = require('animated_gif');
+// var Gif = require('gif.js.optimized');
 
 console.log('as')
 const app = new App();

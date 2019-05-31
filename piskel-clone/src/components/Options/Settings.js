@@ -1,5 +1,8 @@
 import State from "../../State";
 import Canvas from "../Canvas";
+import SecondCanvas from "../Canvas/view/SecondCanvas";
+import Frames from "../Frames/Frames";
+import Preview from "../Preview";
 
 export default class Settings {
   constructor(){
@@ -33,9 +36,11 @@ export default class Settings {
         const newSize = item.value;
         const state = State.getState();
         state.canvasSize = newSize;
-        console.log(state)
         State.setState(state)
-        Canvas.changeSize(newSize)
+        SecondCanvas.changeSize(newSize);
+        Canvas.changeSize(newSize);
+        Frames.resizeFrames(newSize);
+        Preview.resizePreview(newSize);
         document.querySelector('.settings__window').style.display = 'none';
       }
     })

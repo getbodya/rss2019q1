@@ -1,26 +1,26 @@
 import imposeEventToCanvas from '../controller/event';
 import State from '../../../State';
 import Stroke from '../../Tools/Stroke';
+import Canvas from './Canvas';
+import Reactangle from '../../Tools/Reactangle';
+import Circle from '../../Tools/Circle';
 export default class SecondCanvas {
   constructor() {
   }
+  static changeSize(newSize){
+    const canvas = document.querySelector('.canvas-box__second-canvas');
+    canvas.setAttribute('width', `${newSize}px`);
+    canvas.setAttribute('height',`${newSize}px`);
+  }
   static draw() {
     const container = document.querySelector('.canvas-box__container');
-
     let isDown = false
     let startX = 0;
     let startY = 0;
-    let endX = 0;
-    let endY = 0;
     container.addEventListener('mousedown', e => {
-
-      console.log('second')
       e.preventDefault();
       const state = State.getState();
       const { selectTool, toolSize, canvasSize } = state;
-      if (selectTool === 'stroke') {
-
-      }
       const mouseClick = e.button;
       isDown = true;
       const canvasBoxWidth = document.querySelector('.canvas-box__canvas').offsetWidth;
@@ -29,10 +29,9 @@ export default class SecondCanvas {
       startY = Math.floor(e.offsetY / pixelWidth);
       switch (selectTool) {
         case "stroke":
-          document.querySelector('.canvas-box__second-canvas').style.zIndex = '1000';
-
           Stroke.paint(startX, startY, mouseClick);
           break;
+
 
         default:
           break;
@@ -49,29 +48,76 @@ export default class SecondCanvas {
       ctx.clearRect(0, 0, canvasSize, canvasSize)
       const canvasBoxWidth = document.querySelector('.canvas-box__canvas').offsetWidth;
       const pixelWidth = canvasBoxWidth / canvasSize;
-      let x = Math.floor(e.offsetX / pixelWidth);
-      let y = Math.floor(e.offsetY / pixelWidth);
-      endX = x;
-      endY = y;
-      const start = {
+      let endX = Math.floor(e.offsetX / pixelWidth);
+      let endY = Math.floor(e.offsetY / pixelWidth);
+      // endX = x;
+      // endY = y;
+      const points = {
         startX,
         startY,
-      }
-      const end = {
         endX,
-        endY,
+        endY
       }
       switch (selectTool) {
         case "stroke":
-          Stroke.paint(start, end, mouseClick);
+          Stroke.paint(points, mouseClick,false);
+          break;
+        case "reactangle":
+          Reactangle.paint(points, mouseClick,false);
+          // Stroke.paint(points, mouseClick,false);
+          break;
+          break;
+        case "circle":
+          Circle.paint(points, mouseClick,false)
+          // Reactangle.paint(points, mouseClick,false);
+          // Stroke.paint(points, mouseClick,false);
           break;
         default:
           break;
       }
     })
     container.addEventListener('mouseup', e => {
-      isDown=false
+      isDown=false;
+      const mouseClick = e.button;
+      const state = State.getState();
+      const { selectTool, toolSize, canvasSize } = state;
+      const canvas = document.querySelector(".canvas-box__second-canvas");
+      const canvasBoxWidth = document.querySelector('.canvas-box__second-canvas').offsetWidth;
+
+      const pixelWidth = canvasBoxWidth / canvasSize;
+
+      let endX = Math.floor(e.offsetX / pixelWidth);
+      let endY = Math.floor(e.offsetY / pixelWidth);
+
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvasSize, canvasSize)
+      const points = {
+        startX,
+        startY,
+        endX,
+        endY
+      }
+      switch (selectTool) {
+        case "stroke":
+          Stroke.paint(points, mouseClick,true);
+          Canvas.transferDataToFrame();
+          break;
+          case "reactangle":
+          Reactangle.paint(points, mouseClick,true);
+          Canvas.transferDataToFrame();
+          break;
+          case "circle":
+              Circle.paint(points, mouseClick,true)
+              Canvas.transferDataToFrame();
+          break;
+        default:
+          break;
+      }
+
     })
+  }
+  static drawToMainCanvas(points){
+
   }
   static makeCanvas(size) {
     const canvas = document.createElement('canvas');

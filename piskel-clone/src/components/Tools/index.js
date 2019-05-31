@@ -4,6 +4,9 @@ import Eraser from './Eraser';
 import ColorSelect from './ColorSelect';
 import PaintBucket from './PaintBucket';
 import Stroke from './Stroke';
+import Reactangle from './Reactangle';
+import Circle from './Circle';
+import Bright from './Bright';
 
 
 function runTools() {
@@ -13,6 +16,9 @@ function runTools() {
   VerticalMirrorPen.run();
   Pen.run();
   Stroke.run();
+  Reactangle.run();
+  Circle.run();
+  Bright.run();
 }
 
 export default runTools;

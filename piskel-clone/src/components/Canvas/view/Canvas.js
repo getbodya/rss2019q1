@@ -1,12 +1,18 @@
 import imposeEventToCanvas from '../controller/event';
 import State from '../../../State';
+
+
 export default class Canvas{
   constructor(){
   }
   static changeSize(newSize){
     const canvas = document.querySelector('.canvas-box__canvas');
-    canvas.setAttribute('width', `${newSize}px`);
-    canvas.setAttribute('height',`${newSize}px`);
+    const currentSize = canvas.width;
+    const ctx = canvas.getContext('2d');
+    const img = ctx.getImageData(0,0,currentSize,currentSize);
+    canvas.width = newSize;
+    canvas.height = newSize;
+    ctx.putImageData(img,0,0)
   }
   static transferDataToFrame(){
     const canvasCtx = document.querySelector('.canvas-box__canvas').getContext('2d');
@@ -18,8 +24,10 @@ export default class Canvas{
   static makeCanvas(size){
     const canvas = document.createElement('canvas');
     canvas.setAttribute('class','canvas-box__canvas');
-    canvas.setAttribute('width', `${size}px`);
-    canvas.setAttribute('height',`${size}px`);
+    canvas.width = size;
+    canvas.height = size;
+    // canvas.setAttribute('width', `${size}px`);
+    // canvas.setAttribute('height',`${size}px`);
     return canvas;
   }
   static renderCanvas(){

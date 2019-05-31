@@ -7,6 +7,7 @@ import Eraser from "../../Tools/Eraser";
 import PaintBucket from "../../Tools/PaintBucket";
 import Canvas from "../view/Canvas";
 import Stroke from "../../Tools/Stroke";
+import Bright from "../../Tools/Bright";
 
 const imposeEventToCanvas = (canvas) => {
   let isDown = false;
@@ -44,6 +45,9 @@ const imposeEventToCanvas = (canvas) => {
         break;
       case "paintBucket":
         PaintBucket.paint(startX, startY, mouseClick);
+        break;
+      case "bright":
+        Bright.changeBright(startX, startY, mouseClick);
         break;
 
       default:
@@ -87,9 +91,10 @@ const imposeEventToCanvas = (canvas) => {
       case "eraser":
         Eraser.erasePixel(x, y, toolSize, mouseClick);
         break;
-      case "stroke":
-        // Stroke.paint(start, end, mouseClick);
-        break;
+
+      case "bright":
+          Bright.changeBright(x, y, mouseClick);
+          break;
       default:
         break;
     }
