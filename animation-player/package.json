@@ -1,0 +1,27 @@
+{
+  "name": "palette",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "eslint": "npx eslint ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  }
+}

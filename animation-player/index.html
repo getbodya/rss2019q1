@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <title>palette</title>
+</head>
+<body>
+  <header class="header">
+    <div class="header__panel">
+        <i class="header__menu fas fa-bars"></i>
+      <h1 class="header__title">CodeJam-Palette</h1>
+    </div>
+  </header>
+  <main class="main">
+    <div class="toolbar main__toolbar">
+      <div class="toolbar__tools">
+        <span class="toolbar__paint-bucket" id='bucket'><i class="fas fa-fill-drip"></i>  Paint bucket (q)</span>
+        <span class="toolbar__choose-color" id='choose-color'><i class="fas fa-eye-dropper"></i>  Choose color (w)</span>
+        <hr align="center"/>
+        <span class="toolbar__move" id='move'><i class="fas fa-arrows-alt"></i>  Move (e)</span>
+        <span class="toolbar__transform" id='transform'><i class="fas fa-exchange-alt"></i>  Transform (r)</span>
+      </div>
+      <div class="colors toolbar__colors">
+        <div class="colors__current-color">
+          <div class="colors__demo colors__demo-current-color"></div>
+          <span class="colors__title">Current color </span>
+        </div>
+        <div class="colors__prev-color">
+          <div class="colors__demo colors__demo-prev-color"></div>
+          <span class="colors__title">Prev color</span>
+        </div>
+        <hr align="center"/>
+        <div class="colors__red-color">
+          <div class="colors__demo colors__demo-red-color"></div>
+          <span class="colors__title">red</span>
+        </div>
+        <div class="colors__blue-color">
+          <div class="colors__demo colors__demo-blue-color"></div>
+          <span class="colors__title">blue</span>
+        </div>
+      </div>
+    </div>
+    <div class="canvas-container main__canvas-container">
+      <div class="canvas canvas-container__canvas">
+        <div class="canvas__figure" id="0"></div>
+        <div class="canvas__figure"id="1" ></div>
+        <div class="canvas__figure"id="2" ></div>
+        <div class="canvas__figure"id="3" ></div>
+        <div class="canvas__figure"id="4" ></div>
+        <div class="canvas__figure"id="5" ></div>
+        <div class="canvas__figure"id="6" ></div>
+        <div class="canvas__figure"id="7" ></div>
+        <div class="canvas__figure"id="8" ></div>
+      </div>
+    </div>
+  </main>
+  <script src="dist/index_bundle.js"></script>
+</body>
+</html>
