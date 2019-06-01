@@ -7,7 +7,8 @@ import './modules/toolsPanel/choose-color';
 import './modules/toolsPanel/move';
 import { loadColors, loadCanvas } from './modules/services/tools';
 import './modules/services/hot-keys';
-
+import Frames from './modules/frames/Frames';
 
 loadCanvas();
 loadColors();
+Frames.run()

@@ -76,12 +76,13 @@ function setState(state) {
 }
 
 function getState() {
-  return JSON.parse(localStorage.getItem('state'));
-}
-
+  
 if (localStorage.getItem('state') == null) {
   setState(defaultState);
 }
+  return JSON.parse(localStorage.getItem('state'));
+}
+
 
 export {
   setState,

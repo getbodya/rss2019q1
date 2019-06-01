@@ -30,7 +30,7 @@ body {
 /* /// */
 .main {
   display: grid;
-  grid-template-columns: 3fr 7fr;
+  grid-template-columns: 3fr 1fr 4fr 2fr;
   grid-template-rows: 90vh;
 }
 .main__toolbar{
@@ -100,7 +100,64 @@ body {
   cursor: pointer;
   border-radius: 7px
 }
+.main__frame-container{
+  grid-column: 2/3;
+  overflow: scroll;
+}
+.frame-container__frames{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.frames__frame{
+  position: relative;
+  margin: 10px 0;
+  
+  width: 100px;
+  height: 100px;
+  border: 1px #ccc solid;
+  border-radius: 2px;
+  box-shadow: 0 16px 10px -8px #ccc;
+}
+.selected-frame{
+  border: 2px black solid;
+
+}
+.frame__canvas{
+  width: 100px;
+  height: 100px;
+}
+.frame__copy-btn,
+.frame__delete-btn{
+  position: absolute;
+}
+.frame__copy-btn{
+  bottom: 0;
+  right: 0;
+}
+.frame__delete-btn{
+  top:0;
+  right: 0;
+}
+.frame-container__add-frame-btn{
+  text-align: center;
+  margin: 0 auto;
+  width: 100px;
+  border: 1px #ccc solid;
+  border-radius: 2px;
+  box-shadow: 0 16px 10px -8px #ccc;
+}
+
+
+
+
+
+
 .main__canvas-container{
+  
+  grid-column: 3 / 4;
+  /* grid-row: 1 / 2; */
 }
 .canvas-container__canvas {
   position: relative;
