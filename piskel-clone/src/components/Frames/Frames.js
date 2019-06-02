@@ -1,4 +1,5 @@
 import State from "../../State";
+import Layers from "../Layers";
 
 export default class Frames {
   constructor() {
@@ -16,6 +17,8 @@ export default class Frames {
     Frames.unselectFrame();
     frame.classList.add('selected-frame')
     Frames.transDataFrameToCanvas(frame)
+    Layers.renderLayers(frame)
+
   }
   static transDataFrameToCanvas(frame) {
     const { canvasSize } = State.getState();
@@ -63,7 +66,7 @@ export default class Frames {
   }
   static resizeFrames(newSize) {
     const frames = document.querySelectorAll('.frame-box__frame');
-    frames.forEach(frame=>{
+    frames.forEach(frame => {
       console.log(frame)
       const currentSize = frame.width;
       const ctx = frame.getContext('2d');
@@ -75,24 +78,26 @@ export default class Frames {
       ctx.putImageData(img, 0, 0)
     })
   }
-  static makeFrame(data) {
-    const{canvasSize} = State.getState()
+  static makeFrame(id) {
+    const { canvasSize } = State.getState()
     const frameBox = document.createElement('div');
     frameBox.setAttribute('class', 'frame-box__item')
     const frame = document.createElement('canvas');
     Frames.imposeEventToFrame(frame)
     frame.setAttribute('class', 'frame-box__frame')
+    if (!id) {
+      id = Math.random() * 10e16;
+      Frames.saveFrameToState(id)
+    }
+    frame.id = id;
     frame.width = canvasSize;
     frame.height = canvasSize;
     const deleteFrameBtn = Frames.makeDeleteFrameBtn()
     const copyFrameBtn = Frames.makeDuplicateFrameBtn(frameBox);
-    if (data) {
-      const ctx = frame.getContext('2d');
-      ctx.putImageData(data, 0, 0)
-    }
     frameBox.appendChild(copyFrameBtn)
     frameBox.appendChild(deleteFrameBtn)
     frameBox.appendChild(frame);
+
     return frameBox
   }
   static addDuplicateFrame(data, currentFrameBox) {
@@ -100,15 +105,35 @@ export default class Frames {
     const frameList = document.querySelector('.frame-box__list');
     frameList.insertBefore(newFrameBox, currentFrameBox.nextSibling);
   }
-  static addNewFrame() {
-    const frameBox = Frames.makeFrame()
+  static addNewFrame(id) {
+    const frameBox = Frames.makeFrame(id)
     document.querySelector('.frame-box__list').appendChild(frameBox)
   }
+  static saveFrameToState(id) {
+    const state = State.getState()
+    const { frames } = state;
+    const frameData = {
+      id,
+      layers: [],
+    }
+    frames.push(frameData);
+    State.setState(state)
+  }
+  static renderFrames() {
+    const { frames } = State.getState()
+    if (frames.length === 0) {
+      Frames.addNewFrame()
+    }
+    frames.forEach((frame) => {
+      Frames.addNewFrame(frame.id)
+    })
+  }
   static run() {
-    Frames.addNewFrame();
+    Frames.renderFrames();
     Frames.imposeEventToNewFrameBtn();
     const firstFrame = document.querySelectorAll('.frame-box__frame')
     firstFrame[0].classList.add('selected-frame')
+    Layers.renderLayers(firstFrame[0])
     $(".frame-box__list").sortable();
 
   }

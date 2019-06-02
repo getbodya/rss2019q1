@@ -1,0 +1,81 @@
+.hotkey-settings{
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  top: 0;
+  background: black;
+  left: calc(50% - 250px);
+  top: calc(50% - 250px);
+  border: 3px yellow solid;
+  color: white;
+  overflow-y: scroll;
+}
+.hotkey-settings::-webkit-scrollbar{
+background: #666666;
+}
+.hotkey-settings::-webkit-scrollbar-thumb{
+background: #888;
+}
+
+
+.hotkey-settings__hotkey-list{
+  list-style-type: none;
+  padding: 0;
+  margin: 0 5%;
+}
+.hotkey-settings__hotkey-item{
+
+  height: 50px;
+  background: #333;
+  border: 1px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.hotkey-item__label{
+
+  font-size: 22px;
+  font-family: sans-serif;
+  margin: 0 20px;
+}
+.hotkey-item__input{
+  font-size: 18px;
+  width: 15px;
+  background: #333;
+  border: 1px black solid;
+  color: white;
+  margin: 0 10px;
+  padding: 0 10px;
+}
+.hotkey-settings__close-btn{
+  align-self: flex-end;
+  width: 30px;
+  height: 30px;
+  background: #999;
+  font-size: 26px;
+
+  border: none;
+  border-radius: 50%;
+  margin: 10px;
+}
+.hotkey-settings__close-btn:hover{
+  background: #f78888;
+}
+.hotkey-settings__sava-btn {
+  align-self: center;
+  width: 130px;
+  margin: 20px;
+  padding: 10px;
+  background: #666;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+.hotkey-settings__sava-btn:hover {
+  background: #888;
+
+}

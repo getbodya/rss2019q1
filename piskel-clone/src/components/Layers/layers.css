@@ -1,0 +1,27 @@
+.layer-panel__layer{
+  width: 95%;
+  height: 40px;
+  background: #888;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.selected-layer{
+  box-shadow: inset 0px 0px 19px 2px black;
+}
+.layer__canvas{
+  image-rendering: pixelated;
+  background: white;
+  width: 38px;
+  height: 38px;
+  margin: 0 20px
+}
+.canvas-box__glued-canvas{
+  position: absolute;
+  /* left: -200px; */
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  z-index: -1;
+}

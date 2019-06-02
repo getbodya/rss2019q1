@@ -6,18 +6,22 @@ import Frames from './Frames/'
 import runTools from './Tools/';
 import Preview from './Preview/';
 import SecondCanvas from './Canvas/view/SecondCanvas';
+import Keyboard from './Keyboard';
+import Layers from './Layers';
 export default class App {
 	constructor() {
 	}
-
 	run() {
+    const state = new State();
+    state.run();
     SecondCanvas.renderCanvas()
-    State.run();
     runTools();
     Canvas.renderCanvas();
     Settings.run();
     Frames.run();
-    Preview.run()
-    // Cursor.run()
+    Preview.run();
+    var keyboard = new Keyboard();
+    keyboard.run();
+    Layers.run();
   }
 }

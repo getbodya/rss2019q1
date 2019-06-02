@@ -21,13 +21,21 @@ export default class Canvas{
     const selectFrameCtx = document.querySelector('.selected-frame').getContext('2d');
     selectFrameCtx.putImageData(canvasData, 0, 0)
   }
+
+  static transferDataToLayer(){
+    const canvasCtx = document.querySelector('.canvas-box__canvas').getContext('2d');
+    const { canvasSize } = State.getState()
+    const canvasData = canvasCtx.getImageData(0,0,canvasSize,canvasSize);
+    const selectLayer = document.querySelector('.selected-layer').childNodes[0]
+    const selectLayerCtx = selectLayer.getContext('2d');
+    selectLayerCtx.putImageData(canvasData, 0, 0);
+  }
+
   static makeCanvas(size){
     const canvas = document.createElement('canvas');
     canvas.setAttribute('class','canvas-box__canvas');
     canvas.width = size;
     canvas.height = size;
-    // canvas.setAttribute('width', `${size}px`);
-    // canvas.setAttribute('height',`${size}px`);
     return canvas;
   }
   static renderCanvas(){
@@ -39,6 +47,5 @@ export default class Canvas{
     canvas.oncontextmenu = () => {return false};
 
     container.appendChild(canvas);
-    // Canvas.runPrecanvas();
   }
 }

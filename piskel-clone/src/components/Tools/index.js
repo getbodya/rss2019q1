@@ -7,6 +7,7 @@ import Stroke from './Stroke';
 import Reactangle from './Reactangle';
 import Circle from './Circle';
 import Bright from './Bright';
+import Move from './Move';
 
 
 function runTools() {
@@ -19,6 +20,7 @@ function runTools() {
   Reactangle.run();
   Circle.run();
   Bright.run();
+  Move.run();
 }
 
 export default runTools;

@@ -4,6 +4,7 @@ import Stroke from '../../Tools/Stroke';
 import Canvas from './Canvas';
 import Reactangle from '../../Tools/Reactangle';
 import Circle from '../../Tools/Circle';
+import Move from '../../Tools/Move';
 export default class SecondCanvas {
   constructor() {
   }
@@ -66,12 +67,10 @@ export default class SecondCanvas {
           Reactangle.paint(points, mouseClick,false);
           // Stroke.paint(points, mouseClick,false);
           break;
-          break;
         case "circle":
           Circle.paint(points, mouseClick,false)
           // Reactangle.paint(points, mouseClick,false);
           // Stroke.paint(points, mouseClick,false);
-          break;
         default:
           break;
       }
@@ -116,9 +115,6 @@ export default class SecondCanvas {
 
     })
   }
-  static drawToMainCanvas(points){
-
-  }
   static makeCanvas(size) {
     const canvas = document.createElement('canvas');
     canvas.setAttribute('class', 'canvas-box__second-canvas');
@@ -129,7 +125,7 @@ export default class SecondCanvas {
   static renderCanvas() {
     const container = document.querySelector('.canvas-box__container');
     const state = State.getState();
-    const { canvasSize } = state
+    const { canvasSize } = state;
     const canvas = SecondCanvas.makeCanvas(canvasSize);
     imposeEventToCanvas(canvas);
     canvas.oncontextmenu = () => { return false };
