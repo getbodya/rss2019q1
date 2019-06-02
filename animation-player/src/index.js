@@ -8,7 +8,9 @@ import './modules/toolsPanel/move';
 import { loadColors, loadCanvas } from './modules/services/tools';
 import './modules/services/hot-keys';
 import Frames from './modules/frames/Frames';
+import Preview from './modules/preview/Preview';
 
 loadCanvas();
 loadColors();
-Frames.run()
+Frames.run();
+Preview.run();

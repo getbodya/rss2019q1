@@ -10,6 +10,8 @@ module.exports = {
     "rules": {
         'arrow-parens': ["error", "as-needed"],
         'max-len': ["error", { "code": 110 }],
-        'object-curly-newline': ["error", { "multiline": true }]
+        'object-curly-newline': ["error", { "multiline": true }],
+        'no-tabs': ["error", { allowIndentationTabs: true }],
+        'no-param-reassign': ["error", { "props": false }]
     }
 };
