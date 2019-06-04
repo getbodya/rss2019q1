@@ -22,7 +22,7 @@ export default class Preview {
       const previewCtx = document.querySelector('.preview__canvas').getContext('2d');
       previewCtx.putImageData(frameData, 0, 0);
       setTimeout(() => {
-        requestAnimationFrame(step());
+        requestAnimationFrame(step);
       }, delay);
     };
     step();

@@ -34,20 +34,21 @@ export default class Frames {
   static imposeEventsToFrames() {
     const frameContainer = document.querySelector('.main__frame-container');
     frameContainer.addEventListener('click', e => {
-      if (e.target.classList.contains('copy')) {
-        const currentFrame = e.target.parentElement.parentElement;
+      const { target, target:{classList} } = e
+      if (classList.contains('copy')) {
+        const currentFrame = target.parentElement.parentElement;
         Frames.copyFrame(currentFrame);
       }
-      if (e.target.classList.contains('delete')) {
-        const currentFrame = e.target.parentElement.parentElement;
+      if (classList.contains('delete')) {
+        const currentFrame = target.parentElement.parentElement;
         Frames.deleteFrame(currentFrame);
       }
-      if (e.target.classList.contains('add-frame')
-			|| e.target.classList.contains('frame-container__add-frame-btn')) {
+      if (classList.contains('add-frame')
+			|| classList.contains('frame-container__add-frame-btn')) {
         Frames.addFrame();
       }
-      if (e.target.classList.contains('frame__canvas')) {
-        const currentFrame = e.target;
+      if (classList.contains('frame__canvas')) {
+        const currentFrame = target;
         Frames.selectFrame(currentFrame);
       }
     });
@@ -56,8 +57,9 @@ export default class Frames {
   static unselectFrames() {
     const frameList = document.querySelectorAll('.frame__canvas');
     frameList.forEach(frame => {
-      if (frame.classList.contains('selected-frame')) {
-        frame.classList.remove('selected-frame');
+      const {classList} = frame
+      if (classList.contains('selected-frame')) {
+        classList.remove('selected-frame');
       }
     });
   }
@@ -92,13 +94,14 @@ export default class Frames {
   }
 
   static makeFrame() {
+    const canvasSize = 450;
     const newFrame = document.createElement('div');
     newFrame.classList.add('frame');
     newFrame.classList.add('frames__frame');
     const canvas = document.createElement('canvas');
     canvas.classList.add('frame__canvas');
-    canvas.width = '450';
-    canvas.height = '450';
+    canvas.width = canvasSize;
+    canvas.height = canvasSize;
     const copyBtn = document.createElement('div');
     copyBtn.classList.add('frame__copy-btn');
     copyBtn.innerHTML = '<i class="fas fa-copy copy"></i>';
@@ -125,9 +128,10 @@ export default class Frames {
   }
 
   static copyFrame(frame) {
+    const canvasSize = 450;
     const newFrame = frame.cloneNode(true);
     const currentCtx = frame.children[0].getContext('2d');
-    const img = currentCtx.getImageData(0, 0, 450, 450);
+    const img = currentCtx.getImageData(0, 0, canvasSize, canvasSize);
     const newCtx = newFrame.children[0].getContext('2d');
     newCtx.putImageData(img, 0, 0);
     newFrame.children[0].classList.remove('selected-frame');
