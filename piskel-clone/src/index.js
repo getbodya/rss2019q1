@@ -1,8 +1,7 @@
-import App from './components/App';
-var _ = require('lodash');
+import App from "./components/App";
+var Worker = require("worker-loader!./gif.worker");
 require ('webpack-jquery-ui/sortable') ;
-var Gif = require('gif.js.optimized');
+var _ = require('lodash');
 
 const app = new App();
-
-app.run();
+app.run()

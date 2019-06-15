@@ -3,9 +3,12 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
+  // entry: './src/app.js',
   output: {
     filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'src/dist'),
+    publicPath: './dist/',
+
   },
   devtool: 'source-map',
   module: {
@@ -21,6 +24,29 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.worker\.js$/,
+        use: {
+          loader: 'worker-loader',
+          options: {
+            publicPath: './dist/',
+            inline: true,
+          }
+        },
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
+      }
     ],
   },
   plugins: [

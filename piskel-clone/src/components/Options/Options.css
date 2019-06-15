@@ -1,0 +1,126 @@
+@keyframes animation{
+  0% {
+    height: 0;
+  }
+  100%{
+    height: 250px
+  }
+}
+.preview__options-btns{
+  display: flex;
+  justify-content: space-evenly;
+}
+.options-btns__setting-btn,
+.options-btns__export-btn,
+.options-btns__hotkey-btn{
+  background: yellow;
+  border: 3px solid black;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  }
+.options-btns__open-file-btn::-webkit-file-upload-button{
+  visibility: hidden;
+}
+.options-btns__open-file-btn{
+
+  background: yellow;
+  border: 3px solid black;
+  display: block;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../assets/img/folder-open-solid.svg)
+}
+.options-btns__export-btn{
+  background-image: url(../../assets/img/download-solid.svg)
+}
+.options-btns__setting-btn{
+  background-image: url(../../assets/img/cog-solid.svg)
+
+}
+.options-btns__hotkey-btn{
+  background-image: url(../../assets/img/keyboard-solid.svg)
+
+}
+.options__export-window{
+  position: absolute;
+  top: 6vh;
+  width: 250px;
+  height: 250px;
+  right: 0;
+  transition: 3s linear;
+  background: #444;
+  color:white;
+  animation: animation ease-out 0.3s;
+}
+.export-window__exports{
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.export-window__list{
+  list-style-type: none;
+  padding: 0;
+}
+.export-window__item{
+  margin-top: 4px;
+}
+.export-window__item-name{}
+.export-window__item-link{
+  text-decoration: none;
+  color: black;
+  background: yellow;
+  /* padding: 10px 25px; */
+  display: block;
+  width: 75px;
+  height: 20px;
+  text-align: center;
+  border: 6px black solid;
+  border-radius: 10px;
+  transition: 1s;
+}
+.export-window__item-link:hover{
+  background: green;
+  color: white;
+}
+.options__setting-window{
+  position: absolute;
+  top: 6vh;
+  right: 250px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  background: #555;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.setting-window__size-panel{
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px;
+}
+.setting-window__size-list{
+
+  padding: 0;
+  list-style-type: none;
+  height: 60px;
+  width: 50%;
+  margin-left: 20px;
+}
+.setting-window__size-label{
+
+  display: inline;
+  font-size: 40px;
+}
+.setting-window__size-item{
+  margin-top: 1px;
+
+}

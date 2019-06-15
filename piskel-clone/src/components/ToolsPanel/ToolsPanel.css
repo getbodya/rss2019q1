@@ -1,0 +1,134 @@
+.main__tools-panel{
+  flex-grow: 0;
+  width: 70px;
+  background: #444;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tools-panel__size-panel{
+  width: 68px;
+  height: 20px;
+  margin: 1px 0;
+  background: #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.size-panel__size-input{
+  width: 15px;
+  height: 15px;
+  margin: 1px;
+  background-image: url(../../assets/img/square-solid.svg);
+  background-repeat: no-repeat;
+}
+.one-unit{
+
+  background-size:50%;
+  background-position: center;
+}
+.two-unit{
+
+  background-size: 67%;
+  background-position: center;
+}
+.three-unit{
+
+  background-size: 84%;
+  background-position: center;
+}
+.four-unit{
+
+  background-size: 100%;
+  background-position: center;
+}
+.selected-size{
+  box-shadow: 0px -7px 4px -3px yellow;
+
+}
+.tools-panel__tool{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 1px 0;
+  background: #999;
+  background-size: contain;
+}
+.tools-panel__tool:hover >
+.tool__prompt{
+  display: block;
+}
+.tool__prompt{
+  position: absolute;
+  display: none;
+  right: -110px;
+  width: 100px;
+  padding: 5px;
+  background: #c5c5c5;
+  z-index: 2;
+}
+.tool__pen{
+  background-image: url('../../assets/img/pen.png')
+}
+.tool__mirror-pen{
+  background-image: url(../../assets/img/mirrorPen.png)
+
+}
+.tool__eraser{
+  background-image: url(../../assets/img/eraser.png)
+
+}
+.tool__paint-bucket{
+  background-image: url(../../assets/img/bucket.png)
+
+}
+.tool__stroke{
+  background-image: url(../../assets/img/stroke.png)
+}
+.tool__reactangle{
+  background-image: url(../../assets/img/reactangle.png)
+
+}
+.tool__circle{
+  background-image: url(../../assets/img/circle.png)
+
+}
+.tool__ligthen{
+  background-image: url(../../assets/img/lighten.png)
+
+}
+.tool__move{
+  background-image: url(../../assets/img/move.png)
+
+}
+.tool__dithering{
+  background-image: url(../../assets/img/dithering.png)
+
+}
+.inputs__color-inputs{
+
+  position: relative;
+  width: 65px;
+  height: 65px;
+}
+.color-inputs__primary-color,
+.color-inputs__secondary-color{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: none;
+  padding: 0;
+}
+.color-inputs__primary-color{
+  z-index: 1;
+
+  top: 0;
+  left: 0;
+}
+.color-inputs__secondary-color{
+
+  bottom: 0;
+  right: 0;
+}
