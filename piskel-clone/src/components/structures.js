@@ -255,6 +255,23 @@ const structures = {
       },
       {
         tag: 'div',
+        className: 'tools-panel__tool tool__color-picker',
+        children:[
+          {
+            tag: 'div',
+            className: 'tool__prompt',
+            children:[
+              {
+                tag: 'span',
+                className: 'prompt__hotkey',
+                content: 'hotkey:',
+              }
+            ]
+          }
+        ],
+      },
+      {
+        tag: 'div',
         className: 'tools-panel__inputs inputs__color-inputs',
         children: [
           {
@@ -328,10 +345,6 @@ const structures = {
           },
           {
             tag: 'canvas',
-            className: 'canvas-panel__main-canvas',
-          },
-          {
-            tag: 'canvas',
             className: 'canvas-panel__static-canvas',
 
           },
@@ -378,42 +391,42 @@ const structures = {
       },
     ],
   },
-  previewStructure: {
-    parent: '.control-panel__preview',
-    tag: 'div',
-    className: 'preview__preview-box',
-    children: [
-      {
-        tag: 'canvas',
-        className: 'preview-box__canvas',
-      },
-      {
-        tag: 'button',
-        className: 'preview-box__fullscreen-btn',
-      },
-      {
-        tag: 'label',
-        className: 'preview-box__fps-input-label',
-        content: '12fps',
-        attr: {
-          for: 'fps-input',
-        }
-      },
-      {
-        tag: 'input',
-        className: 'preview-box__fps-input',
-        attr: {
-          id: 'fps-input',
-          type: 'range',
-          max: 24,
-          value: 12,
-          min: 1,
-          step: 1,
-        }
-      },
-    ],
+  // previewStructure: {
+  //   parent: '.control-panel__preview',
+  //   tag: 'div',
+  //   className: 'preview__preview-box',
+  //   children: [
+  //     {
+  //       tag: 'canvas',
+  //       className: 'preview-box__canvas',
+  //     },
+  //     {
+  //       tag: 'button',
+  //       className: 'preview-box__fullscreen-btn',
+  //     },
+  //     {
+  //       tag: 'label',
+  //       className: 'preview-box__fps-input-label',
+  //       content: '12fps',
+  //       attr: {
+  //         for: 'fps-input',
+  //       }
+  //     },
+  //     {
+  //       tag: 'input',
+  //       className: 'preview-box__fps-input',
+  //       attr: {
+  //         id: 'fps-input',
+  //         type: 'range',
+  //         max: 24,
+  //         value: 12,
+  //         min: 1,
+  //         step: 1,
+  //       }
+  //     },
+  //   ],
 
-  },
+  // },
   optionStructure: {
     parent: '.control-panel__options',
     tag: 'div',
@@ -473,13 +486,11 @@ const structures = {
         content: ''
       },
       {
-        tag: 'span',
-        className: 'hotkey-item__change-label',
-        content: 'click to change'
-      },
-      {
         tag: 'input',
         className: 'hotkey-item__input',
+        attr:{
+          readonly:'readonly'
+        }
       }
     ]
 
@@ -497,7 +508,7 @@ const structures = {
           {
             tag: 'h3',
             className: 'setting-window__size-label',
-            content: 'size:'
+            content: 'resize:'
           },
           {
             tag: 'ul',
@@ -567,7 +578,29 @@ const structures = {
 
                 ]
               },
+              {
+                tag: 'li',
+                className: 'setting-window__size-item',
+                children: [
+                  {
+                    tag: 'input',
+                    className: 'setting-window__size-input',
+                    attr: {
+                      type: 'radio',
+                      name: 'size',
+                      value: ''
 
+                    },
+                  },
+                  {
+                    tag: 'input',
+                    className: 'setting-window__custom-size',
+                    attr:{
+                      placeholder:'1..200',
+                    }
+                  },
+                ]
+              },
             ]
           },
         ]
@@ -604,6 +637,10 @@ const structures = {
                     tag: 'a',
                     className: 'export-window__item-link gif-link',
                     content: '.gif'
+                  },
+                  {
+                    tag: 'div',
+                    className: 'export-window__item-status gif-status',
 
                   },
                 ]
@@ -628,6 +665,11 @@ const structures = {
                     tag: 'a',
                     className: 'export-window__item-link own-format-link',
                     content: '.bdn'
+
+                  },
+                  {
+                    tag: 'div',
+                    className: 'export-window__item-status accept',
 
                   },
                 ]

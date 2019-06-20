@@ -97,7 +97,7 @@ export default class LayerPanel extends ViewInstance {
         const idNewCanvas = Math.random()*10e16;
         const frameId = currentCanvas.dataset.frame
         const newElement = LayerPanel.render(layerStructure,idNewCanvas,imgData,frameId);
-        project.addLayer(newElement);
+        // project.addLayer(newElement);
         const list = parentNode.parentNode;
         list.insertBefore(newElement, parentNode.nextSibling);
       }

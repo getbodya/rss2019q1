@@ -1,8 +1,6 @@
 import ViewInstance from "../instances/ViewInstance";
-import State from "../State/State";
 import ToolsPanel from "../ToolsPanel";
 import LayerPanel from "../LayerPanel/LayerPanel";
-import FramePanel from "../FramePanel/FramePanel";
 
 export default class CanvasPanel extends ViewInstance {
   constructor() {
@@ -39,7 +37,7 @@ export default class CanvasPanel extends ViewInstance {
     }
     widgetText.innerHTML = `[${canvasSize}x${canvasSize}]  ${x}:${y}`
   }
-  static runAnimationCanvas() {
+  static runCanvas() {
     const box = document.querySelector('.canvas-panel__box');
     const staticCanvas = document.querySelector('.canvas-panel__static-canvas');
     const animationCanvas = document.querySelector('.canvas-panel__animation-canvas');
@@ -60,6 +58,9 @@ export default class CanvasPanel extends ViewInstance {
         case "tool__pen":
           ToolsPanel.pen(startX, startY, toolSize, mouseClick);
           break;
+        case "tool__color-picker":
+          ToolsPanel.colorPicker(startX, startY, mouseClick);
+          break;
         case "horisontal-pen":
           ToolsPanel.horisontalMirrorPen(startX, startY, toolSize, mouseClick);
           break;
@@ -67,6 +68,7 @@ export default class CanvasPanel extends ViewInstance {
           ToolsPanel.verticalMirrorPen(startX, startY, toolSize, mouseClick);
           break;
         case "tool__eraser":
+          CanvasPanel.hideGluedCanvas()
           ToolsPanel.eraser(startX, startY, toolSize);
           break;
         case "tool__paint-bucket":
@@ -86,7 +88,7 @@ export default class CanvasPanel extends ViewInstance {
       if (!isDown) return;
       const { x, y } = CanvasPanel.getCoordinate(e);
       CanvasPanel.runWidget(x, y)
-      const {canvasSize,selectTool} = state;
+      const {canvasSize,selectTool,toolSize} = state;
       const ctx = animationCanvas.getContext('2d');
       const mouseClick = e.which - 1;
       const points = {
@@ -96,7 +98,32 @@ export default class CanvasPanel extends ViewInstance {
         endY: y,
       }
       switch (selectTool) {
+        case "tool__pen":
+          ToolsPanel.pen(x, y, toolSize, mouseClick);
+          break;
+          case "horisontal-pen":
+          ToolsPanel.horisontalMirrorPen(x, y, toolSize, mouseClick);
+          break;
+        case "tool__mirror-pen":
+          ToolsPanel.verticalMirrorPen(x, y, toolSize, mouseClick);
+          break;
+          case "both-pen":
+          ToolsPanel.bothMirrorPen(x, y, toolSize, mouseClick);
+          break;
+        case "tool__eraser":
+          ToolsPanel.eraser(x, y, toolSize);
+          break;
+        case "tool__paint-bucket":
+          ToolsPanel.paintBucket(x, y,mouseClick);
+          break;
+        case "tool__ligthen":
+          ToolsPanel.lighten(x, y, mouseClick);
+          break;
+        case "tool__dithering":
+          ToolsPanel.dithering(x, y);
+          break;
         case "tool__move":
+          CanvasPanel.hideGluedCanvas()
           ToolsPanel.move(points, imgData);
           break;
         case "tool__stroke":
@@ -140,83 +167,14 @@ export default class CanvasPanel extends ViewInstance {
           break;
       }
       CanvasPanel.transferDataToLayer()
+      CanvasPanel.uncoverGluedCanvas()
       LayerPanel.transferDataToGluedCanvasAndFrame()
     })
     box.addEventListener('mouseout', e => {
-    })
-  }
-  static onStaticCanvas() {
-    const staticTools = [
-      "tool__pen",
-      "horisontal-pen",
-      "both-pen",
-      "tool__mirror-pen",
-      "tool__eraser",
-      "tool__ligthen",
-      "tool__dithering",
-      "tool__move",
-    ]
-    const box = document.querySelector('.canvas-panel__box');
-    const staticCanvas = document.querySelector('.canvas-panel__static-canvas');
-    const gluedCanvas = document.querySelector('.canvas-panel__glued-canvas');
-    box.addEventListener('mousedown', () => {
-      const { selectTool } = state;
-      if (staticTools.includes(selectTool)) {
-        staticCanvas.classList.add('on-canvas')
-        // gluedCanvas.classList.add('hidden')
-      }
-    })
-    box.addEventListener('mouseup', () => {
-      staticCanvas.classList.remove('on-canvas')
-      // gluedCanvas.classList.remove('hidden')
-    })
-    staticCanvas.addEventListener('mouseout', () => {
-      staticCanvas.classList.remove('on-canvas')
-      // gluedCanvas.classList.remove('hidden')
+      CanvasPanel.uncoverGluedCanvas()
     })
     box.addEventListener('contextmenu', e => {
       e.preventDefault()
-    })
-  }
-  static runStaticCanvas() {
-    const staticCanvas = document.querySelector('.canvas-panel__static-canvas')
-    staticCanvas.addEventListener('mousemove', e => {
-      const { x, y } = CanvasPanel.getCoordinate(e);
-      CanvasPanel.runWidget(x, y)
-      const mouseClick = e.which - 1;
-      const { selectTool, toolSize } = state;
-      switch (selectTool) {
-        case "tool__pen":
-          ToolsPanel.pen(x, y, toolSize, mouseClick);
-          break;
-        case "horisontal-pen":
-          ToolsPanel.horisontalMirrorPen(x, y, toolSize, mouseClick);
-          break;
-        case "both-pen":
-          ToolsPanel.bothMirrorPen(x, y, toolSize, mouseClick);
-          break;
-        case "tool__mirror-pen":
-          ToolsPanel.verticalMirrorPen(x, y, toolSize, mouseClick);
-          break;
-        case "tool__eraser":
-          ToolsPanel.eraser(x, y, toolSize);
-          break;
-        case "tool__paint-bucket":
-          ToolsPanel.paintBucket(mouseClick);
-          break;
-        case "tool__ligthen":
-          ToolsPanel.lighten(x, y, mouseClick);
-          break;
-        case "tool__dithering":
-          ToolsPanel.dithering(x, y);
-          break;
-        default:
-          break;
-      }
-    })
-    staticCanvas.addEventListener('mouseup', (e) => {
-      CanvasPanel.transferDataToLayer()
-      LayerPanel.transferDataToGluedCanvasAndFrame()
     })
   }
   static transferDataToLayer() {
@@ -242,10 +200,22 @@ export default class CanvasPanel extends ViewInstance {
     const ctx = gluedCanvas.getContext('2d');
     ctx.clearRect(0, 0, width, width)
   }
+  static hideGluedCanvas(){
+    const gluedCanvas = document.querySelector('.canvas-panel__glued-canvas')
+    const { classList } = gluedCanvas
+    if(!classList.contains('hidden')){
+      classList.add('hidden');
+    }
+  }
+  static uncoverGluedCanvas(){
+    const gluedCanvas = document.querySelector('.canvas-panel__glued-canvas')
+    const { classList } = gluedCanvas
+    if(classList.contains('hidden')){
+      classList.remove('hidden')
+    }
+  }
   static run() {
     CanvasPanel.runCursor()
-    CanvasPanel.onStaticCanvas()
-    CanvasPanel.runAnimationCanvas()
-    CanvasPanel.runStaticCanvas()
+    CanvasPanel.runCanvas()
   }
 }

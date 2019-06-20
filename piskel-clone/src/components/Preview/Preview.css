@@ -33,10 +33,27 @@
 .preview-box__fullscreen-btn{
   background-image: url(../../assets/img/expand-arrows-alt-solid.svg);
   position: absolute;
+  display: none;
   top: 0;
   right: 0;
   width: 30px;
   height: 30px;
+
+  border: 4px yellow solid;
+  color: white;
+}
+.preview-box__canvas:hover +
+.preview-box__fullscreen-btn{
+  display: block;
+}
+.preview-box__fullscreen-btn:hover{
+  display: block;
+
+}
+.preview__preview-box:fullscreen >
+.preview-box__fullscreen-btn{
+  display: block;
+
 }
 .open{
   background-image: url(../../assets/img/compress-arrows-alt-solid.svg);

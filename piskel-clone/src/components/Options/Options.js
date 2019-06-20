@@ -30,20 +30,20 @@ export default class Options extends ViewInstance {
         if (!isOpenHotKeyWindow) {
           isOpenHotKeyWindow = true;
           Hotkeys.renderHotKeysWindow();
-          document.body.removeEventListener('keydown',Hotkeys.hotKeysEvent)
+          document.body.removeEventListener('keydown', Hotkeys.hotKeysEvent)
         } else {
           const hotKeyWindow = document.querySelector('.options__hotkey-window')
           isOpenHotKeyWindow = false;
           document.body.removeChild(hotKeyWindow)
-          document.body.addEventListener('keydown',Hotkeys.hotKeysEvent)
+          document.body.addEventListener('keydown', Hotkeys.hotKeysEvent)
         }
       }
       if (classList.contains('options-btns__setting-btn')) {
         if (!isOpenSettingWindow) {
           isOpenSettingWindow = true;
           const settingWindow = Options.render(settingWindowStructure)
-          Options.imposeClickEventSettingWindow(settingWindow)
           document.body.appendChild(settingWindow)
+          Options.imposeClickEventSettingWindow(settingWindow)
         } else {
           const settingWindow = document.querySelector('.options__setting-window')
           isOpenSettingWindow = false;
@@ -66,6 +66,8 @@ export default class Options extends ViewInstance {
       }
 
     })
+  }
+  static closeAllWindow(){
   }
   static imposeDataToHotKeyWindow() {
     const { hotKeys } = state;
@@ -95,15 +97,51 @@ export default class Options extends ViewInstance {
   }
   static imposeClickEventSettingWindow(settingWindow) {
     settingWindow.addEventListener('click', e => {
-      const { target: { classList }} = e
+      const { target: { classList } } = e
       if (classList.contains('layer-btns__save-setting')) {
         const allSizeRadio = document.querySelectorAll('.setting-window__size-input');
         allSizeRadio.forEach(radio => {
           if (radio.checked) {
             state.canvasSize = radio.value;
-            Options.resizeAllCanvas(radio.value)
+            Options.resizeAllCanvas(radio.value);
           }
         })
+        document.body.removeChild(settingWindow);
+        isOpenSettingWindow = false;
+      }
+    })
+    const customInput = document.querySelector('.setting-window__custom-size');
+    customInput.addEventListener('input', e => {
+      validate(e);
+      let {
+        target:{
+          parentNode:{
+            childNodes
+          },
+          value
+        },
+
+        data
+      } = e;
+      childNodes[0].value = value
+      // console.log(input)
+      function validate(e){
+        const maxValue = 200;
+        const minValue = 1;
+        let {
+          target,
+          data: rune
+        } = e;
+        if (Number.isInteger(+rune)) {
+          if (target.value > maxValue){
+            target.value = maxValue
+          }else if(target.value<1){
+            target.value = minValue;
+          }
+        }else {
+          e.preventDefault()
+          target.value = target.value.slice(0, -1)
+        }
       }
     })
   }
@@ -136,6 +174,8 @@ export default class Options extends ViewInstance {
       const saveBtn = document.querySelector('.export-window__item-link');
       saveBtn.download = Math.round(performance.now());
       saveBtn.href = URL.createObjectURL(blob)
+      const gifStatus = document.querySelector('.gif-status');
+      gifStatus.classList.add('accept');
     });
     gif.render();
   }
@@ -149,8 +189,15 @@ export default class Options extends ViewInstance {
     })
   }
   static saveOwnFormat() {
-    const { frames } = state;
-    const data = JSON.stringify(frames)
+    const frames = State.getFrames();
+    const framesOrder = State.getFramesOrder();
+    const {canvasSize} = state;
+    const toFile = {
+      frames,
+      framesOrder,
+      canvasSize
+    };
+    const data = JSON.stringify(toFile)
     const link = document.querySelector('.own-format-link');
     link.href = `data:text;charset=utf-8,${encodeURIComponent(data)}`;
     link.download = 'project.bdn'
@@ -158,27 +205,22 @@ export default class Options extends ViewInstance {
   static imposeEventToOpenFile() {
     const openBtn = document.querySelector('.options-btns__open-file-btn');
     openBtn.addEventListener('input', e => {
-        const input = e.target;
-        const reader = new FileReader();
-        reader.onload = function(){
-          const data = reader.result;
-          const objData = JSON.parse(data);
-          for(let frame in objData){
-            for(let layer in objData[frame]){
-              const arr =[]
-              for(let i in objData[frame][layer]){
-                arr.push(objData[frame][layer][i])
-              }
-              objData[frame][layer]=arr
-            }
-          }
-          state.frames = objData;
-          FramePanel.renderLayersOfFrame();
-          State.setState(state)
-          window.state = State.getState()
-          // location.reload()
-        };
-        reader.readAsText(input.files[0],'utf-8')
+      const input = e.target;
+      const reader = new FileReader();
+      reader.onload = function () {
+        const data = reader.result;
+        const objData = JSON.parse(data);
+        const { frames, framesOrder, canvasSize } = objData;
+        state.canvasSize = canvasSize;
+        Options.resizeAllCanvas(canvasSize)
+        State.setFramesOrder(framesOrder);
+        State.setFrames(frames);
+        FramePanel.deleteAllframes();
+        project.data = frames
+        FramePanel.renderLoadFrame(frames);
+        console.log(objData)
+      };
+      reader.readAsText(input.files[0], 'utf-8')
 
     })
   }

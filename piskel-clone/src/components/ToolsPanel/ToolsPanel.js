@@ -154,12 +154,14 @@ export default class ToolsPanel extends ViewInstance {
   }
   static circle(points, primColor, canvas) {
     let { startX, startY, endX, endY } = points;
-    const { primaryColor, secondaryColor, toolSize } = state;
+    const { primaryColor, secondaryColor, toolSize, ctrlTool } = state;
     const ctx = canvas.getContext("2d");
     if (!primColor) {
       ctx.strokeStyle = primaryColor;
+      ctx.fillStyle = primaryColor;
     } else {
       ctx.strokeStyle = secondaryColor;
+      ctx.fillStyle = secondaryColor;
     }
     const diffX = Math.abs(endX - startX);
     const diffY = Math.abs(endY - startY);
@@ -177,18 +179,23 @@ export default class ToolsPanel extends ViewInstance {
     ctx.beginPath();
     ctx.arc(startX, startY, radius, 0, 2 * Math.PI, false);
     ctx.lineWidth = toolSize;
-
-    ctx.stroke();
     ctx.closePath();
+    if(ctrlTool){
+      ctx.fill();
+    }else{
+      ctx.stroke();
+    }
   }
   static reactangle(points, primColor, canvas) {
     let { startX, startY, endX, endY } = points;
-    const { primaryColor, secondaryColor, toolSize } = state;
+    const { primaryColor, secondaryColor, toolSize, ctrlTool } = state;
     const ctx = canvas.getContext("2d");
     if (!primColor) {
       ctx.strokeStyle = primaryColor;
+      ctx.fillStyle = primaryColor;
     } else {
       ctx.strokeStyle = secondaryColor;
+      ctx.fillStyle = secondaryColor;
     }
     const rectW = endX - startX;
     const rectH = endY - startY;
@@ -201,7 +208,11 @@ export default class ToolsPanel extends ViewInstance {
     ctx.rect(startX, startY, rectW, rectH);
     ctx.lineWidth = toolSize;
     ctx.closePath();
-    ctx.stroke();
+    if(ctrlTool){
+      ctx.fill();
+    }else{
+      ctx.stroke();
+    }
   }
   static move(points, imgData) {
     const { startX, startY, endX, endY } = points;
@@ -212,6 +223,28 @@ export default class ToolsPanel extends ViewInstance {
     ctx.clearRect(0, 0, canvas.width, canvas.width)
     ctx.putImageData(imgData, shiftX, shiftY)
   }
+  static colorPicker(x,y,mouseClick){
+    const canvas = document.querySelector('.canvas-panel__static-canvas');
+    const ctx = canvas.getContext("2d");
+    const {data:pixelData} = ctx.getImageData(x,y, 1, 1);
+    let color = '#';
+    pixelData.forEach((colorChanel,id) => {
+      if(id<3){
+        let hexColor = '0'
+        hexColor += colorChanel.toString(16);
+        color+=hexColor.slice(-2);
+      }
+    })
+    if(!mouseClick){
+      var colorInput = document.querySelector('.color-inputs__primary-color');
+      state.primaryColor = color;
+    }else{
+      var colorInput = document.querySelector('.color-inputs__secondary-color');
+      state.secondaryColor = color;
+    }
+    colorInput.value = color;
+  }
+
   static toolsClickEvent(e) {
     const { target: { classList }, target } = e;
     if (classList.contains('tools-panel__tool')) {
@@ -227,7 +260,14 @@ export default class ToolsPanel extends ViewInstance {
       } else {
         state.selectTool = target.classList[1]
       }
-
+      console.log(e.ctrlKey)
+      if(e.ctrlKey){
+        state.ctrlTool = true;
+        console.log(state)
+      }else{
+        state.ctrlTool = false;
+        console.log(state)
+      }
     }
   }
   static changeColorEvent() {
@@ -273,6 +313,14 @@ export default class ToolsPanel extends ViewInstance {
     }
     return rightPixels
   }
+  static hotkeysPrompt(){
+    const {hotKeys} = state;
+    hotKeys.forEach(hotkey => {
+      const {classNameSelector,key} = hotkey;
+      const toolPromptHotkey = document.querySelector(`${classNameSelector} > .tool__prompt > .prompt__hotkey`);
+      toolPromptHotkey.innerHTML = `hotkey: ${key}`;
+    })
+  }
   static run() {
     const { selectTool, primaryColor, secondaryColor } = state;
     const tools = document.querySelector('.main__tools-panel');
@@ -288,5 +336,6 @@ export default class ToolsPanel extends ViewInstance {
     primaryColorInput.value = primaryColor;
     const secondaryColorInput = document.querySelector(`.color-inputs__secondary-color`);
     secondaryColorInput.value = secondaryColor;
+    ToolsPanel.hotkeysPrompt()
   }
 }

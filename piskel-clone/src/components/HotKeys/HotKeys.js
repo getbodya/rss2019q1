@@ -5,7 +5,6 @@ import ViewInstance from "../instances/ViewInstance";
 
 export default class Hotkeys{
   static hotKeysEvent(e){
-    console.log(e)
     const { hotKeys } = State.getState();
     hotKeys.forEach(hotKey => {
       const {keyCode,classNameSelector} = hotKey;
@@ -16,22 +15,64 @@ export default class Hotkeys{
       }
     });
   }
-  static changeHotkeyEvent(){
-    document.body.addEventListener('keydown', e )
-    const changeLabel = document.querySelector('.hotkey-item__change-label')
-    changeLabel.innerHTML = 'submit new key';
-
+  static changeHotkeyEvent(e){
+    const {key,keyCode} = e;
+    const hotkeyElement = document.querySelector('.hotkey-item--change-status');
+    const hotkeyInput = hotkeyElement.children[1];
+    const allInputs = document.querySelectorAll('.hotkey-item__input');
+    allInputs.forEach(input=>{
+      if(input.dataset.code == keyCode){
+        input.dataset.code = '';
+        input.value = '';
+      }
+    })
+    hotkeyInput.value = key;
+    hotkeyInput.dataset.code = keyCode;
+    hotkeyElement.classList.remove('hotkey-item--change-status');
     document.body.removeEventListener('keydown',Hotkeys.changeHotkeyEvent)
     document.body.addEventListener('keydown',Hotkeys.hotKeysEvent)
   }
   static hotkeysWindowEvent(hotKeyWindow){
     hotKeyWindow.addEventListener('click', e =>{
-      const {target:{classList}} = e;
-      if(classList.contains('hotkey-item__change-label')){
-        const {target:changeLabel} = e;
-        changeLabel.innerHTML = 'click on the new key';
+      const {
+        target:{
+          classList,
+          parentNode:{
+            childNodes:hotkeyList
+          }
+        }
+      } = e;
+      if(classList.contains('hotkey-list__hotkey-item')){
+        hotkeyList.forEach(item => {
+          if(item.classList.contains('hotkey-item--change-status')){
+            item.classList.remove('hotkey-item--change-status')
+          }
+        })
+        classList.add('hotkey-item--change-status')
         document.body.removeEventListener('keydown',Hotkeys.hotKeysEvent)
         document.body.addEventListener('keydown',Hotkeys.changeHotkeyEvent)
+      }
+      if(classList.contains('hotkey-window__save-btn')){
+        const allItems = document.querySelectorAll('.hotkey-list__hotkey-item');
+        const state = State.getState();
+        allItems.forEach(item =>{
+          const name = item.dataset.name;
+          const key = item.children[1].value;
+          const keyCode = item.children[1].dataset.code;
+          state.hotKeys.forEach(hotkeyData =>{
+            if(hotkeyData.name == name){
+              hotkeyData.key = key;
+              hotkeyData.keyCode = keyCode;
+            }
+          })
+        })
+        State.setState(state)
+        isOpenHotKeyWindow = false;
+        document.body.removeChild(hotKeyWindow)
+      }
+      if(classList.contains('hotkey-window__close-btn')){
+        isOpenHotKeyWindow = false;
+        document.body.removeChild(hotKeyWindow)
       }
     })
   }
@@ -42,14 +83,13 @@ export default class Hotkeys{
     document.body.appendChild(hotKeyWindow);
     const hotKeyUl = document.querySelector('.hotkey-window__hotkey-list')
     hotKeys.forEach(hotKey => {
-      const {name,key,keyCode,classNameSelector} = hotKey;
-
+      const {name,key,keyCode} = hotKey;
       const hotKeyElement = ViewInstance.render(hotKeyWindowElement);
-      hotKeyElement.setAttribute('name',name);
+      hotKeyElement.dataset.name = name;
       hotKeyElement.children[0].innerHTML = name;
-      hotKeyElement.children[2].value = key;
+      hotKeyElement.children[1].value = key;
+      hotKeyElement.children[1].dataset.code = keyCode;
       hotKeyUl.appendChild(hotKeyElement)
-      console.log(hotKeyElement)
     })
     Hotkeys.hotkeysWindowEvent(hotKeyWindow)
   }

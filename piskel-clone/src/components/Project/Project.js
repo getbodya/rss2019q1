@@ -3,7 +3,7 @@ import ToolsPanel from "../ToolsPanel";
 import CanvasPanel from "../CanvasPanel";
 import LayerPanel from "../LayerPanel";
 import Options from "../Options";
-import Preview from "../Preview";
+import preview from "../Preview";
 import ViewInstance from "../instances/ViewInstance";
 import State from "../State/State";
 import Hotkeys from "../HotKeys";
@@ -72,13 +72,6 @@ export default class Project{
     State.setFrames(frames)
     return idNewFrame
   }
-  addLayer(layer){
-    // const frames =this.data
-    // const idSelectedFrame = document.querySelector('.frame-panel__frame-list > .selected').children[0].id
-    // const idNewLayer = layer.childNodes[0].id;
-    // // frames[idSelectedFrame][idNewLayer] = [];
-    // State.setFrames(frames)
-  }
   deleteLayer(layer){
     const frames = this.data
     const idSelectedFrame = document.querySelector('.frame-panel__frame-list > .selected').children[0].id
@@ -133,7 +126,7 @@ export default class Project{
     LayerPanel.run();
     ToolsPanel.run();
     CanvasPanel.run();
-    Preview.run()
+    preview.run()
     Options.run();
     Hotkeys.run();
   }

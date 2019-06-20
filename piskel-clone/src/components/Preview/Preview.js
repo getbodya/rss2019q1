@@ -1,10 +1,41 @@
-import ViewInstance from "../instances/ViewInstance";
+const preview = {
+  previewStructure: {
+    parent: '.control-panel__preview',
+    tag: 'div',
+    className: 'preview__preview-box',
+    children: [
+      {
+        tag: 'canvas',
+        className: 'preview-box__canvas',
+      },
+      {
+        tag: 'button',
+        className: 'preview-box__fullscreen-btn',
+      },
+      {
+        tag: 'label',
+        className: 'preview-box__fps-input-label',
+        content: '12fps',
+        attr: {
+          for: 'fps-input',
+        }
+      },
+      {
+        tag: 'input',
+        className: 'preview-box__fps-input',
+        attr: {
+          id: 'fps-input',
+          type: 'range',
+          max: 24,
+          value: 12,
+          min: 1,
+          step: 1,
+        }
+      },
+    ],
 
-export default class Preview extends ViewInstance{
-  constructor(){
-    super();
-  }
-  static runAnimation(){
+  },
+  runAnimation(){
     let counter = 0;
     const previewCtx = document.querySelector('.preview-box__canvas').getContext('2d')
     const step = () =>{
@@ -21,8 +52,8 @@ export default class Preview extends ViewInstance{
       }, delay);
     }
     step()
-  }
-  static fullScreenMode(){
+  },
+  fullScreenMode(){
     const btn = document.querySelector('.preview-box__fullscreen-btn');
     btn.addEventListener('click',()=>{
       const preview = document.querySelector('.preview__preview-box')
@@ -34,17 +65,18 @@ export default class Preview extends ViewInstance{
         document.exitFullscreen();
       }
     })
-  }
-  static runFpsInput(){
+  },
+  runFpsInput(){
     const fpsInput = document.querySelector('.preview-box__fps-input');
     const label = document.querySelector('.preview-box__fps-input-label')
     fpsInput.addEventListener('input',e=>{
       label.innerHTML = `${fpsInput.value}fps`
     },false)
-  }
-  static run(){
-    Preview.runAnimation()
-    Preview.fullScreenMode()
-    Preview.runFpsInput()
+  },
+  run(){
+    this.runAnimation();
+    this.fullScreenMode();
+    this.runFpsInput();
   }
 }
+export default preview

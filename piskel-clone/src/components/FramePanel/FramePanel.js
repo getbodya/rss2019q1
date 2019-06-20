@@ -65,16 +65,16 @@ export default class FramePanel extends ViewInstance {
       State.setFramesOrder()
     })
   }
-  static renderLoadFrame() {
+  static renderLoadFrame(){
     let frames = project.data
+
+    console.log(frames)
     const { frameStructure } = structures;
     const frameOrder = State.getFramesOrder();
     if (Object.keys(frames).length > 0) {
       frameOrder.forEach(frameId=>{
-        // for(let frameId in frames ){
           FramePanel.addNew(frameStructure, frameId);
-        // }
-      });
+       });
     } else {
       FramePanel.addNew(frameStructure);
     };
@@ -113,6 +113,10 @@ export default class FramePanel extends ViewInstance {
     const firstElement = list.children[0];
     FramePanel.select(firstElement)
     FramePanel.renderFrameLayers(firstElement)
+  }
+  static deleteAllframes(){
+    const frameList =document.querySelector('.frame-panel__frame-list');
+    frameList.innerHTML =''
   }
   static run() {
     FramePanel.renderLoadFrame()

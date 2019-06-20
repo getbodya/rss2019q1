@@ -107,6 +107,10 @@
   background-image: url(../../assets/img/dithering.png)
 
 }
+.tool__color-picker{
+  background-image: url(../../assets/img/color-picker.png)
+
+}
 .inputs__color-inputs{
 
   position: relative;

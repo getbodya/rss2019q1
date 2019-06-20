@@ -1,3 +1,3 @@
-import Preview from "./Preview";
+import preview from "./Preview";
 import './Preview.css'
-export default Preview;
+export default preview;

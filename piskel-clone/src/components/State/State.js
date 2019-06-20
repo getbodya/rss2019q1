@@ -4,6 +4,7 @@ export default class State {
     this.state = {
       canvasSize: 32,
       selectTool: 'tool__pen',
+      ctrlTool: false,
       primaryColor: '#000000',
       secondaryColor: '#ffffff',
       toolSize: 1,
@@ -63,10 +64,16 @@ export default class State {
           classNameSelector: '.tool__dithering'
         },
         {
-          name: 'move',
+          name: 'Move',
           key: 'n',
           keyCode: 79,
           classNameSelector: '.tool__move'
+        },
+        {
+          name: 'Color picker',
+          key: 'h',
+          keyCode: 72,
+          classNameSelector: '.tool__color-picker'
         },
       ],
     };
@@ -86,7 +93,8 @@ export default class State {
   static getFramesOrder() {
     return JSON.parse(localStorage.getItem('frames_order'));
   }
-  static setFramesOrder(){
+  static setFramesOrder(framesOrder){
+    if(!framesOrder){
       const allFrames = document.querySelectorAll('.frame-box__canvas');
       const idAllFrames = [];
       allFrames.forEach(frame=>{
@@ -96,6 +104,9 @@ export default class State {
         idAllFrames.push(123123)
       }
       localStorage.setItem('frames_order', JSON.stringify(idAllFrames));
+    }else{
+      localStorage.setItem('frames_order', JSON.stringify(framesOrder));
+    }
   }
   static getFrames() {
     return JSON.parse(localStorage.getItem('frames'));

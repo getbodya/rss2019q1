@@ -4,10 +4,11 @@
 body{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background: #111;
-
 }
 .header{
 
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 50px;
   background: #444;
@@ -16,10 +17,11 @@ body{
 .main{
   width: 1000px;
   margin: 0 auto;
-
+  background-image: url(../assets/img/langBg.PNG);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position-y: -188px;
   display: grid;
-  background: #222;
-
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(18, 100px);
 }
@@ -30,6 +32,21 @@ body{
   position: relative;
   border: yellow 6px solid;
   z-index: 10;
+}
+.description__text{
+
+  color: white;
+  font-size: 65px;
+  text-align: center;
+  margin-top: 59px;
+}
+.description__link{
+
+  text-decoration: none;
+  color: black;
+  background: yellow;
+  padding: 2px 10px;
+  border-radius: 10px;
 }
 .main__btns{
   grid-row: 5/9;
@@ -79,7 +96,10 @@ body{
   background: #333;
   border: yellow 6px solid;
   position: relative;
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .main__exemples::after{
   content: '';
@@ -102,6 +122,13 @@ body{
   position: absolute;
   left: -3px;
   transform: rotate(-117.25deg);
+}
+.exemples__img{
+  width: 150px;
+  height: 150px;
+  background: #111;
+  image-rendering: pixelated;
+  border: 6px yellow solid;
 }
 
 .main__author-info{
@@ -158,11 +185,31 @@ body{
   display: inline-block;
 }
 .author-info__contacts-item{
-
   background: #222;
   color: white;
   border: yellow 6px solid;
   padding: 0;
   margin: 10px;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.contacts-item__link{
+
+  text-decoration: none;
+  color: black;
+  background: yellow;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+.footer{
+  background: #333;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__text{
+
+  font-size: 25px;
 }

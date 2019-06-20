@@ -56,7 +56,7 @@ export default class ViewInstance{
       project.addFrame(newElement)
     }
     if(className == 'layer-box box'){
-      project.addLayer(newElement);
+      // project.addLayer(newElement);
       const selectedFrameId = document.querySelector('.frame-panel__frame-list > .selected').children[0].id
       const canvasNewElement = newElement.children[0]
       canvasNewElement.dataset.frame = selectedFrameId;
