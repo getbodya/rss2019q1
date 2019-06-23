@@ -20,11 +20,11 @@ export default class LayerPanel extends ViewInstance {
     const selectedFrame = document.querySelector('.frame-panel__frame-list > .selected').children[0];
     const selectedFrameCtx = selectedFrame.getContext('2d');
     const { width } = selectedFrame;
-    gluedCanvasCtx.clearRect(0, 0, width, width)
-    selectedFrameCtx.clearRect(0, 0, width, width)
+    gluedCanvasCtx.clearRect(0, 0, width, width);
+    selectedFrameCtx.clearRect(0, 0, width, width);
     allLayersCanvas.forEach(layerCanvas => {
-      gluedCanvasCtx.drawImage(layerCanvas, 0, 0)
-      selectedFrameCtx.drawImage(layerCanvas, 0, 0)
+      gluedCanvasCtx.drawImage(layerCanvas, 0, 0);
+      selectedFrameCtx.drawImage(layerCanvas, 0, 0);
     })
   }
   static layersDataCollector(){
@@ -114,6 +114,10 @@ export default class LayerPanel extends ViewInstance {
 
         }
       }
+    })
+    layerPanel.addEventListener('mouseup', e =>{
+      console.log('upp')
+      setTimeout(LayerPanel.transferDataToGluedCanvasAndFrame(),0)
     })
   }
   static run() {

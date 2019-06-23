@@ -7,9 +7,9 @@ const structures = {
       {
         tag: 'header',
         className: 'app__header',
-        children:[
+        children: [
           {
-            tag:'h1',
+            tag: 'h1',
             className: 'header__label',
             content: 'PISKELCLONE'
           }
@@ -31,33 +31,33 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__size-panel',
-        children:[
+        children: [
           {
-            tag:'div',
+            tag: 'div',
             className: 'size-panel__size-input one-unit',
-            attr:{
-              'data-size':1,
+            attr: {
+              'data-size': 1,
             }
           },
           {
-            tag:'div',
+            tag: 'div',
             className: 'size-panel__size-input two-unit',
-            attr:{
-              'data-size':2,
+            attr: {
+              'data-size': 2,
             }
           },
           {
-            tag:'div',
+            tag: 'div',
             className: 'size-panel__size-input three-unit',
-            attr:{
-              'data-size':3,
+            attr: {
+              'data-size': 3,
             },
           },
           {
-            tag:'div',
+            tag: 'div',
             className: 'size-panel__size-input four-unit',
-            attr:{
-              'data-size':4,
+            attr: {
+              'data-size': 4,
             }
           },
         ]
@@ -65,11 +65,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__pen',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -82,11 +82,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__mirror-pen',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'p',
                 className: 'prompt__hotkey',
@@ -109,11 +109,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__eraser',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -126,11 +126,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__paint-bucket',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -143,11 +143,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__stroke',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -160,11 +160,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__circle',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'p',
                 className: 'prompt__hotkey',
@@ -182,11 +182,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__reactangle',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -205,11 +205,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__move',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -222,11 +222,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__ligthen',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -239,11 +239,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__dithering',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -256,11 +256,11 @@ const structures = {
       {
         tag: 'div',
         className: 'tools-panel__tool tool__color-picker',
-        children:[
+        children: [
           {
             tag: 'div',
             className: 'tool__prompt',
-            children:[
+            children: [
               {
                 tag: 'span',
                 className: 'prompt__hotkey',
@@ -488,8 +488,8 @@ const structures = {
       {
         tag: 'input',
         className: 'hotkey-item__input',
-        attr:{
-          readonly:'readonly'
+        attr: {
+          readonly: 'readonly'
         }
       }
     ]
@@ -595,8 +595,8 @@ const structures = {
                   {
                     tag: 'input',
                     className: 'setting-window__custom-size',
-                    attr:{
-                      placeholder:'1..200',
+                    attr: {
+                      placeholder: '1..200',
                     }
                   },
                 ]
@@ -617,9 +617,35 @@ const structures = {
     className: 'options__export-window',
     children: [
       {
+        tag: 'ul',
+        className: 'export-window__sprite-info',
+        children: [
+          {
+            tag: 'li',
+            className: 'sprite-info__sprite-title',
+            children:[
+              {
+                tag:'span',
+                className: 'sprite-info__sprite-title-label',
+                content: 'Title:'
+              },
+              {
+                tag:'input',
+                className: 'sprite-info__sprite-title-input',
+                attr:{
+                  value: 'New piskel clone'
+                }
+              },
+            ]
+          },
+        ]
+
+      },
+      {
         tag: 'div',
         className: 'export-window__exports',
         children: [
+          
           {
             tag: 'h3',
             className: 'export-window__item-label',
@@ -641,6 +667,22 @@ const structures = {
                   {
                     tag: 'div',
                     className: 'export-window__item-status gif-status',
+
+                  },
+                ]
+              },
+              {
+                tag: 'li',
+                className: 'export-window__item',
+                children: [
+                  {
+                    tag: 'a',
+                    className: 'export-window__item-link piskel-link',
+                    content: '.piskel'
+                  },
+                  {
+                    tag: 'div',
+                    className: 'export-window__item-status piskel-status',
 
                   },
                 ]

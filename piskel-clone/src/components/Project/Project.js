@@ -6,7 +6,8 @@ import Options from "../Options";
 import preview from "../Preview";
 import ViewInstance from "../instances/ViewInstance";
 import State from "../State/State";
-import Hotkeys from "../HotKeys";
+import Hotkeys from "../Options/HotKeys";
+import GIF from 'gif.js.optimized';
 
 export default class Project{
   constructor(){
@@ -28,13 +29,13 @@ export default class Project{
           },
           content: 'Create new project'
         },
-        {
-          tag:'button',
-          attr:{
-            class:'start-window__open-project-btn'
-          },
-          content: 'Open .bdn project'
-        },
+        // {
+        //   tag:'button',
+        //   attr:{
+        //     class:'start-window__open-project-btn'
+        //   },
+        //   content: 'Open .bdn project'
+        // },
         {
           tag:'button',
           attr:{
@@ -118,6 +119,7 @@ export default class Project{
     const canvasPanel = document.querySelector('.main__canvas-panel');
     canvasPanel.removeChild(startWindow)
   }
+  
   start(){
     this.openStartWindow()
   }

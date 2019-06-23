@@ -1,7 +1,7 @@
-import State from "../State/State";
-import ToolsPanel from "../ToolsPanel";
-import structures from "../structures";
-import ViewInstance from "../instances/ViewInstance";
+import State from "../../State/State";
+import ToolsPanel from "../../ToolsPanel";
+import structures from "../../structures";
+import ViewInstance from "../../instances/ViewInstance";
 
 export default class Hotkeys{
   static hotKeysEvent(e){
@@ -68,11 +68,11 @@ export default class Hotkeys{
         })
         State.setState(state)
         isOpenHotKeyWindow = false;
-        document.body.removeChild(hotKeyWindow)
+        Hotkeys.closeWindow()
       }
       if(classList.contains('hotkey-window__close-btn')){
         isOpenHotKeyWindow = false;
-        document.body.removeChild(hotKeyWindow)
+        Hotkeys.closeWindow()
       }
     })
   }
@@ -92,6 +92,10 @@ export default class Hotkeys{
       hotKeyUl.appendChild(hotKeyElement)
     })
     Hotkeys.hotkeysWindowEvent(hotKeyWindow)
+  }
+  static closeWindow(){
+    const hotkeysWindow = document.querySelector('.options__hotkey-window');
+		document.body.removeChild(hotkeysWindow)
   }
   static run(){
     const {body} = document;
