@@ -1,0 +1,76 @@
+.layers__layers-panel{
+  width: 94%;
+  margin: 10px auto;
+  background: #444;
+}
+.layers-panel__layer-btns{
+  margin-bottom: 5px;
+}
+.layer-btns__add-new-btn{
+  display: block;
+  width: 140px;
+  height: 40px;
+  margin: 0 auto;
+  background: yellow;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-weight: 900;
+}
+.layers-panel__layer-list{
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
+}
+.layers-panel__layer-list::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.layers-panel__layer-list::-webkit-scrollbar{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+.layers-panel__layer-list::-webkit-scrollbar-track-piece{
+	width: 12px;
+  background: #444;
+}
+.layers-panel__layer-list::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #333;
+}
+.layer-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 96%;
+  height: 40px;
+  background: #333;
+}
+.layer-box__canvas{
+  width: 32px;
+  height: 32px;
+  border: 1px solid black;
+}
+.layer-box__copy-btn,
+.layer-box__merge-btn,
+.layer-box__delete-btn{
+  width: 30px;
+  height: 30px;
+  background: yellow;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.layer-box__copy-btn{
+  background-image: url(../../assets/img/copy-solid.svg);
+}
+.layer-box__merge-btn{
+  background-image: url(../../assets/img/object-group-solid.svg);
+}
+.layer-box__delete-btn{
+  background-image: url(../../assets/img/trash-solid.svg);
+}

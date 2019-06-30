@@ -2,13 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
-  // entry: './src/app.js',
+  entry: './src/app/index.js',
   output: {
     filename: 'app.bundle.js',
-    path: path.resolve(__dirname, 'src/dist'),
+    path: path.resolve(__dirname, './src/app/dist'),
     publicPath: './dist/',
-
   },
   devtool: 'source-map',
   module: {
@@ -24,16 +22,16 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      {
-        test: /\.worker\.js$/,
-        use: {
-          loader: 'worker-loader',
-          options: {
-            publicPath: './dist/',
-            inline: true,
-          }
-        },
-      },
+      // {
+      //   test: /\.worker\.js$/,
+      //   use: {
+      //     loader: 'worker-loader',
+      //     options: {
+      //       publicPath: './dist/',
+      //       inline: true,
+      //     }
+      //   },
+      // },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [

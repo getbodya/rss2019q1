@@ -1,0 +1,120 @@
+.main__tools-panel{
+  flex-grow: 0;
+  width: 70px;
+  background: #444;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+.tools-panel__size-panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 20px;
+  margin: 1px 0;
+  background: #999;
+}
+.size-panel__size-input{
+  width: 15px;
+  height: 15px;
+  margin: 1px;
+  background-image: url(../../assets/img/square-solid.svg);
+  background-repeat: no-repeat;
+}
+.one-unit{
+  background-size:50%;
+  background-position: center;
+}
+.two-unit{
+  background-size: 67%;
+  background-position: center;
+}
+.three-unit{
+  background-size: 84%;
+  background-position: center;
+}
+.four-unit{
+  background-size: 100%;
+  background-position: center;
+}
+.selected-size{
+  box-shadow: 0px -7px 4px -3px yellow;
+}
+.tools-panel__tool{
+  position: relative;
+  width: 35px;
+  height: 35px;
+  margin: 1px auto;
+  background: #999;
+  background-size: contain;
+}
+.tools-panel__tool:hover >
+.tool__prompt{
+  display: block;
+}
+.tool__prompt{
+  position: absolute;
+  right: -110px;
+  z-index: 2;
+  width: 100px;
+  padding: 5px;
+  background: #c5c5c5;
+  display: none;
+}
+.pen{
+  background-image: url(../../assets/img/pen.png)
+}
+.tool__mirror-pen{
+  background-image: url(../../assets/img/mirrorPen.png)
+}
+.eraser{
+  background-image: url(../../assets/img/eraser.png)
+}
+.paintBucket{
+  background-image: url(../../assets/img/bucket.png)
+}
+.stroke{
+  background-image: url(../../assets/img/stroke.png)
+}
+.reactangle{
+  background-image: url(../../assets/img/reactangle.png)
+}
+.circle{
+  background-image: url(../../assets/img/circle.png)
+}
+.lighten{
+  background-image: url(../../assets/img/lighten.png)
+}
+.move{
+  background-image: url(../../assets/img/move.png)
+}
+.dithering{
+  background-image: url(../../assets/img/dithering.png)
+}
+.colorPicker{
+  background-image: url(../../assets/img/color-picker.png)
+}
+.inputs__color-inputs{
+  position: relative;
+  width: 65px;
+  height: 65px;
+}
+.color-inputs__primary-color,
+.color-inputs__secondary-color{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+}
+.color-inputs__primary-color{
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.color-inputs__secondary-color{
+  bottom: 0;
+  right: 0;
+}
