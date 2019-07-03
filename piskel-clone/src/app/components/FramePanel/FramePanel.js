@@ -1,12 +1,9 @@
 import ViewInstance from "../instances/ViewInstance";
 import structures from "../structures";
 import LayerPanel from "../LayerPanel/LayerPanel";
-import CanvasPanel from "../CanvasPanel/CanvasPanel";
 import State from "../State/State";
-import Project from "../Project";
 
 export default class FramePanel extends ViewInstance {
-
   static imposeEventsToFramePanel() {
     const { frameStructure, frameStructure: { into } } = structures;
     const framePanel = document.querySelector('.main__frame-panel')
@@ -45,14 +42,7 @@ export default class FramePanel extends ViewInstance {
         const currentCanvas = parentNode.children[0];
         const { width } = currentCanvas;
         const currentCanvasCtx = currentCanvas.getContext('2d');
-        const imgData = currentCanvasCtx.getImageData(0, 0, width, width)
-        // project.addFrame(newElement)
-        // const frames = project.data;
-        // const idCurrentCanvas = currentCanvas.id;
-        // const currentCanvasData = frames[idCurrentCanvas]
-        // const idNewCanvas = newCanvas.id
-        // frames[idNewCanvas] = currentCanvasData
-        // State.setFrames(frames)
+        const imgData = currentCanvasCtx.getImageData(0, 0, width, width);
         const newElement = ViewInstance.render(frameStructure,idNewFrame);
         const newCanvas = newElement.children[0];
         const newCanvasCtx = newCanvas.getContext('2d')

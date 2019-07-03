@@ -1,11 +1,6 @@
 import ViewInstance from "../instances/ViewInstance";
 import structures from "../structures";
-
 export default class LayerPanel extends ViewInstance {
-  constructor() {
-    super()
-  }
-
   static transferDataToStaticCanvas(canvas) {
     const {canvasSize} = state
     const layerCtx = canvas.getContext('2d');
@@ -27,24 +22,13 @@ export default class LayerPanel extends ViewInstance {
       selectedFrameCtx.drawImage(layerCanvas, 0, 0);
     })
   }
-  static layersDataCollector(){
-    const layerData = {}
-    const allLayerCanvas = document.querySelectorAll('.layer-box__canvas');
-    allLayerCanvas.forEach(canvas=>{
-      const {width} = canvas;
-      const ctx = canvas.getContext('2d');
-      layerData[canvas.id] = ctx.getImageData(0,0,width,width).data
-    })
-    return layerData
-  }
   static selectFirstLayer(){
     const layerList = document.querySelector('.layers-panel__layer-list');
     const firstLayer = layerList.children[0];
-    LayerPanel.select(firstLayer)
-    const firstCanvas = firstLayer.children[0]
-    LayerPanel.transferDataToStaticCanvas(firstCanvas)
-    LayerPanel.transferDataToGluedCanvasAndFrame()
-
+    LayerPanel.select(firstLayer);
+    const firstCanvas = firstLayer.children[0];
+    LayerPanel.transferDataToStaticCanvas(firstCanvas);
+    LayerPanel.transferDataToGluedCanvasAndFrame();
   }
   static imposeEventsToLayerPanel(){
     const { layerStructure,layerStructure:{into} } = structures;
@@ -58,12 +42,10 @@ export default class LayerPanel extends ViewInstance {
       if(classList.contains('layer-box__canvas')){
         LayerPanel.select(parentNode);
         LayerPanel.transferDataToStaticCanvas(target)
-
       }
       if(classList.contains('layer-box')){
         LayerPanel.select(target);
         LayerPanel.transferDataToStaticCanvas(target.children[0])
-
       }
       if(classList.contains('layer-box__delete-btn')){
         const list = parentNode.parentNode;
@@ -96,7 +78,6 @@ export default class LayerPanel extends ViewInstance {
         const idNewCanvas = Math.random()*10e16;
         const frameId = currentCanvas.dataset.frame
         const newElement = LayerPanel.render(layerStructure,idNewCanvas,imgData,frameId);
-        // project.addLayer(newElement);
         const list = parentNode.parentNode;
         list.insertBefore(newElement, parentNode.nextSibling);
       }

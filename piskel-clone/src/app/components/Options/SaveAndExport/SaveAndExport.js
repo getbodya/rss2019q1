@@ -1,9 +1,6 @@
 import ViewInstance from "../../instances/ViewInstance";
 import GIF from 'gif.js.optimized';
 import State from "../../State/State";
-import UPNG from 'upng-js';
-var $ = require("jquery");
-import giphy from 'giphy-api';
 
 export default class SaveAndExport extends ViewInstance {
 	constructor() {
@@ -151,8 +148,9 @@ export default class SaveAndExport extends ViewInstance {
 		};
 		const data = JSON.stringify(toFile)
 		const link = document.querySelector('.own-format-link');
-		link.href = `data:text;charset=utf-8,${encodeURIComponent(data)}`;
-		link.download = 'project.bdn'
+    link.href = `data:text;charset=utf-8,${encodeURIComponent(data)}`;
+    const {value:fileName} = document.querySelector('.sprite-info__sprite-title-input')
+		link.download = `${fileName}.bdn`
 	}
 	static saveGif() {
 		const gif = new GIF({
@@ -173,8 +171,9 @@ export default class SaveAndExport extends ViewInstance {
 		})
 		gif.on('finished', function (blob) {
 			const saveBtn = document.querySelector('.export-window__item-link');
-			saveBtn.download = Math.round(performance.now());
-			saveBtn.href = URL.createObjectURL(blob);
+      saveBtn.href = URL.createObjectURL(blob);
+      const {value:fileName} = document.querySelector('.sprite-info__sprite-title-input')
+			saveBtn.download = fileName;
 			const gifStatus = document.querySelector('.gif-status');
 			gifStatus.classList.add('accept');
 		});

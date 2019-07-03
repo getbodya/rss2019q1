@@ -3,9 +3,6 @@ import ToolsPanel from "../ToolsPanel";
 import LayerPanel from "../LayerPanel/LayerPanel";
 
 export default class CanvasPanel extends ViewInstance {
-  constructor() {
-    super();
-  }
   static getCoordinate(e){
     const canvasWidth = 512;
     const {canvasSize} = state;
@@ -18,7 +15,7 @@ export default class CanvasPanel extends ViewInstance {
     const animationCanvas = document.querySelector('.canvas-panel__animation-canvas')
     animationCanvas.addEventListener('mousemove', e => {
       const {toolSize} = state;
-      const canvasSize = animationCanvas.width;
+      const {width:canvasSize} = animationCanvas;
       const { x, y } = CanvasPanel.getCoordinate(e);
       const ctx = animationCanvas.getContext('2d');
       ctx.fillStyle = '#ccc';
@@ -77,15 +74,13 @@ export default class CanvasPanel extends ViewInstance {
         'horisontalMirrorPen',
         'verticalMirrorPen',
         'bothMirrorPen'
-      ]
-
+      ];
       const { x, y } = CanvasPanel.getCoordinate(e);
       startX = x;
       startY = y;
       const thisContext = createThisContext(e);
-      const mouseClick = e.button;
       const ctx = staticCanvas.getContext('2d');
-      thisContext.mouseClick = mouseClick;
+      thisContext.mouseClick = e.button;
       const { selectTool } = state;
       if(workingTools.includes(selectTool)){
         ToolsPanel[selectTool].call(thisContext);
@@ -101,48 +96,40 @@ export default class CanvasPanel extends ViewInstance {
       } = state;
       const ctx = animationCanvas.getContext('2d');
       ctx.clearRect(0, 0, animationCanvas.width, animationCanvas.width);
-      const mouseClick = e.which - 1;
-      const points = {
+      const thisContext = createThisContext(e);
+      thisContext.canvas = animationCanvas;
+      thisContext.mouseClick = e.which - 1;
+      thisContext.imgData = imgData;
+      thisContext.points = {
         startX,
         startY,
         endX: x,
         endY: y,
-      }
-      const thisContext = createThisContext(e);
-      thisContext.canvas = animationCanvas;
-      thisContext.mouseClick = mouseClick;
-      thisContext.imgData = imgData;
-      thisContext.points = points;
-      if(selectTool === 'move' || 'eraser'){
-        // CanvasPanel.hideGluedCanvas();
-      }
+      };
       ToolsPanel[selectTool].call(thisContext);
     })
     box.addEventListener('mouseup', e => {
       isDown = false
       const workingTools = ['circle','reactangle','stroke']
-      const mouseClick = e.button;
       const { x, y } = CanvasPanel.getCoordinate(e);
       const { selectTool } = state;
-      const points = {
+      const thisContext = createThisContext(e);
+      thisContext.points = {
         startX,
         startY,
         endX:x,
         endY:y
-      }      
-      const thisContext = createThisContext(e);
-      thisContext.points = points;
-      thisContext.mouseClick = mouseClick;
+      }
+      thisContext.mouseClick =  e.button;
       thisContext.canvas = staticCanvas;
       if(workingTools.includes(selectTool)){
         ToolsPanel[selectTool].call(thisContext);
       }
-      CanvasPanel.uncoverGluedCanvas()
-      CanvasPanel.transferDataToLayer()
+      CanvasPanel.transferDataToLayer();
       LayerPanel.transferDataToGluedCanvasAndFrame()
     })
     box.addEventListener('mouseout', e => {
-      CanvasPanel.uncoverGluedCanvas()
+      isDown = false
     })
     box.addEventListener('contextmenu', e => {
       e.preventDefault()
@@ -154,7 +141,6 @@ export default class CanvasPanel extends ViewInstance {
     const { width } = staticCanvas;
     const canvasData = canvasCtx.getImageData(0, 0, width, width);
     const selectLayer = document.querySelector('.layers-panel__layer-list > .selected').childNodes[0]
-
     const selectLayerCtx = selectLayer.getContext('2d');
     project.saveLayer(selectLayer, canvasData)
     selectLayerCtx.putImageData(canvasData, 0, 0);
@@ -171,20 +157,20 @@ export default class CanvasPanel extends ViewInstance {
     const ctx = gluedCanvas.getContext('2d');
     ctx.clearRect(0, 0, width, width)
   }
-  static hideGluedCanvas(){
-    const gluedCanvas = document.querySelector('.canvas-panel__glued-canvas')
-    const { classList } = gluedCanvas
-    if(!classList.contains('hidden')){
-      classList.add('hidden');
-    }
-  }
-  static uncoverGluedCanvas(){
-    const gluedCanvas = document.querySelector('.canvas-panel__glued-canvas')
-    const { classList } = gluedCanvas
-    if(classList.contains('hidden')){
-      classList.remove('hidden')
-    }
-  }
+  // static hideGluedCanvas(){
+  //   const gluedCanvas = document.querySelector('.canvas-panel__glued-canvas')
+  //   const { classList } = gluedCanvas
+  //   if(!classList.contains('hidden')){
+  //     classList.add('hidden');
+  //   }
+  // }
+  // static uncoverGluedCanvas(){
+  //   const gluedCanvas = document.querySelector('.canvas-panel__glued-canvas')
+  //   const { classList } = gluedCanvas
+  //   if(classList.contains('hidden')){
+  //     classList.remove('hidden')
+  //   }
+  // }
   static run() {
     CanvasPanel.runCursor()
     CanvasPanel.runCanvas()

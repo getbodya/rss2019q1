@@ -79,4 +79,4 @@ const preview = {
     this.runFpsInput();
   }
 }
-export default preview
+export default preview;

@@ -7,7 +7,6 @@ import preview from "../Preview";
 import ViewInstance from "../instances/ViewInstance";
 import State from "../State/State";
 import Hotkeys from "../Options/HotKeys";
-import GIF from 'gif.js.optimized';
 
 export default class Project{
   constructor(){
@@ -112,7 +111,6 @@ export default class Project{
     const canvasPanel = document.querySelector('.main__canvas-panel');
     canvasPanel.removeChild(startWindow)
   }
-  
   start(){
     this.openStartWindow()
   }

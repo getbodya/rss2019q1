@@ -1,8 +1,7 @@
 import ViewInstance from "../instances/ViewInstance";
 
 export default class ControlPanel extends ViewInstance{
-  constructor(structure){
+  constructor(){
     super();
-    this.structure = structure;
   }
 }

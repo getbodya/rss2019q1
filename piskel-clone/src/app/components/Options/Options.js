@@ -6,10 +6,6 @@ import SaveAndExport from "./SaveAndExport/SaveAndExport";
 import Setting from "./Setting/Setting";
 
 export default class Options extends ViewInstance {
-  constructor(structure) {
-    super();
-    this.structure = structure;
-  }
   static imposeClickEvent() {
     const optionsPanel = document.querySelector('.control-panel__options');
     window.isOpenHotKeyWindow = false;
@@ -67,7 +63,7 @@ export default class Options extends ViewInstance {
       SaveAndExport.closeWindow();
       isOpenExportWindow = false;
     }
-    
+
   }
   static imposeEventToOpenFile() {
     const openBtn = document.querySelector('.options-btns__open-file-btn');

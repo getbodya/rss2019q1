@@ -1,5 +1,4 @@
 import FramePanel from "../FramePanel";
-// import AppView from "./AppView";
 import LayerPanel from "../LayerPanel";
 import ToolsPanel from "../ToolsPanel";
 import structures from "../structures";
@@ -10,7 +9,6 @@ import Project from "../Project"
 import preview from "../Preview";
 import Options from "../Options";
 import ViewInstance from "../instances/ViewInstance";
-
 
 export default class App{
   constructor(){
@@ -36,7 +34,6 @@ export default class App{
 
         },
       ],
-
     }
   }
   run(){
@@ -59,7 +56,6 @@ export default class App{
     ViewInstance.render(preview.previewStructure)
     Options.render(optionStructure)
     LayerPanel.render(layerPanelStructure)
-
     window.project = new Project(frames);
     project.start();
   }

@@ -1,9 +1,7 @@
 import ViewInstance from "../instances/ViewInstance";
-
 export default class ToolsPanel extends ViewInstance {
-  constructor(structure) {
+  constructor() {
     super();
-    this.structure = structure;
   }
   static paintPixel(x, y, size, color) {
     const ctx = document.querySelector('.canvas-panel__static-canvas').getContext('2d');
@@ -39,7 +37,7 @@ export default class ToolsPanel extends ViewInstance {
       toolSize,
       color
     } = this;
-    if(!endX){
+    if (!endX) {
       endX = startX;
       endY = startY;
     }
@@ -59,7 +57,7 @@ export default class ToolsPanel extends ViewInstance {
       toolSize,
       color
     } = this;
-    if(!endX){
+    if (!endX) {
       endX = startX;
       endY = startY;
     }
@@ -82,7 +80,7 @@ export default class ToolsPanel extends ViewInstance {
       toolSize,
       color
     } = this;
-    if(!endX){
+    if (!endX) {
       endX = startX;
       endY = startY;
     }
@@ -120,7 +118,7 @@ export default class ToolsPanel extends ViewInstance {
     function getPixelPos(x, y) {
       return (y * canvas.width + x) * 4;
     };
-    function matchStartColor(pos,startColor) {
+    function matchStartColor(pos, startColor) {
       return (dstData[pos] == startColor.r &&
         dstData[pos + 1] == startColor.g &&
         dstData[pos + 2] == startColor.b &&
@@ -153,17 +151,17 @@ export default class ToolsPanel extends ViewInstance {
           var y = newPos[1];
 
           var pixelPos = (y * canvasWidth + x) * 4;
-          while (y-- >= 0 && matchStartColor(pixelPos,startColor)) {
+          while (y-- >= 0 && matchStartColor(pixelPos, startColor)) {
             pixelPos -= canvasWidth * 4;
           }
           pixelPos += canvasWidth * 4;
           ++y;
           var reachLeft = false;
           var reachRight = false;
-          while (y++ < canvasHeight - 1 && matchStartColor(pixelPos,startColor)) {
+          while (y++ < canvasHeight - 1 && matchStartColor(pixelPos, startColor)) {
             colorPixel(pixelPos);
             if (x > 0) {
-              if (matchStartColor(pixelPos - 4,startColor)) {
+              if (matchStartColor(pixelPos - 4, startColor)) {
                 if (!reachLeft) {
                   pixelStack.push([x - 1, y]);
                   reachLeft = true;
@@ -175,7 +173,7 @@ export default class ToolsPanel extends ViewInstance {
             }
 
             if (x < canvasWidth - 1) {
-              if (matchStartColor(pixelPos + 4,startColor)) {
+              if (matchStartColor(pixelPos + 4, startColor)) {
                 if (!reachRight) {
                   pixelStack.push([x + 1, y]);
                   reachRight = true;
@@ -406,28 +404,6 @@ export default class ToolsPanel extends ViewInstance {
     }
     colorInput.value = color;
   }
-  static toolsClickEvent(e) {
-    const { target: { classList }, target } = e;
-    if (classList.contains('tools-panel__tool')) {
-      ToolsPanel.select(target)
-      if (classList.contains('tool__mirror-pen')) {
-        if (e.ctrlKey) {
-          state.selectTool = 'horisontalMirrorPen'
-        } else if (e.shiftKey) {
-          state.selectTool = 'bothMirrorPen'
-        } else {
-          state.selectTool = 'verticalMirrorPen'
-        }
-      } else {
-        state.selectTool = target.classList[1]
-      }
-      if (e.ctrlKey) {
-        state.ctrlTool = true;
-      } else {
-        state.ctrlTool = false;
-      }
-    }
-  }
   static changeColorEvent() {
     const allColorInput = document.querySelectorAll('input[type=color]')
     allColorInput.forEach(input => {
@@ -445,6 +421,32 @@ export default class ToolsPanel extends ViewInstance {
       if (classList.contains('size-panel__size-input')) {
         ToolsPanel.selectSize(sizeInput)
       }
+    })
+  }
+  static imposeEventsToToolsPanel() {
+    const toolsPanel = document.querySelector('.main__tools-panel');
+    toolsPanel.addEventListener('click', e => {
+      const { target: { classList }, target } = e;
+      if (classList.contains('tools-panel__tool')) {
+        ToolsPanel.select(target)
+        if (classList.contains('tool__mirror-pen')) {
+          if (e.ctrlKey) {
+            state.selectTool = 'horisontalMirrorPen'
+          } else if (e.shiftKey) {
+            state.selectTool = 'bothMirrorPen'
+          } else {
+            state.selectTool = 'verticalMirrorPen'
+          }
+        } else {
+          state.selectTool = target.classList[1]
+        }
+        if (e.ctrlKey) {
+          state.ctrlTool = true;
+        } else {
+          state.ctrlTool = false;
+        }
+      }
+
     })
   }
   static selectSize(input) {
@@ -484,8 +486,7 @@ export default class ToolsPanel extends ViewInstance {
   }
   static run() {
     const { selectTool, primaryColor, secondaryColor } = state;
-    const tools = document.querySelector('.main__tools-panel');
-    ToolsPanel.imposeClickEvent(tools, ToolsPanel.toolsClickEvent);
+    ToolsPanel.imposeEventsToToolsPanel();
     ToolsPanel.changeColorEvent()
     ToolsPanel.imposeSizePanelEvent()
     ToolsPanel.selectOneUnitSize()
