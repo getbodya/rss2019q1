@@ -1,0 +1,28 @@
+{
+  "name": "piskel-clone",
+  "version": "0.0.1",
+  "description": "piskel-clone",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "lint": "eslint src/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gif.js.optimized": "^1.0.1",
+    "jquery-ui": "^1.12.1",
+    "webpack-jquery-ui": "^2.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "image-webpack-loader": "^5.0.0",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.1"
+  }
+}
